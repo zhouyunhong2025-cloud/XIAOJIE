@@ -1,0 +1,6 @@
+# AgentForge has no external dependencies for the core!
+# Python 3.9+ standard library only.
+
+# Optional: for future LLM integration
+# openai>=1.0.0
+# anthropic>=0.20.0
