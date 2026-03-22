@@ -1,5 +1,15 @@
-# AgentForge has no external dependencies for the core!
-# Python 3.9+ standard library only.
+# I.QUEUE Core Dependencies
+
+# Web Framework (Phase 7)
+fastapi>=0.104.0
+uvicorn>=0.24.0
+python-multipart>=0.0.6
+
+# Desktop UI (Phase 7)
+PyQt6>=6.6.0
+
+# HTTP Client
+requests>=2.31.0
 
 # Optional: for future LLM integration
 # openai>=1.0.0
