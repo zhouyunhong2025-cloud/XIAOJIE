@@ -21,6 +21,10 @@
 
 ![I.QUEUE Tetris Game Demo](./docs/tetris-demo.png)
 
+### Brand Identity
+
+![I.QUEUE Logo](./docs/i-queue-logo.png)
+
 ### Three Core Building Blocks (Stacked Together)
 
 | Block Type | Visual | Meaning | Description |
