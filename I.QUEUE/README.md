@@ -1,43 +1,54 @@
-# 🔧 AgentForge
+# I.QUEUE
 
-**用 Python 函数替代一大堆文字 Prompt 来定义 AI 智能体**
+**Build AI agents with Python functions—not giant text prompts.**
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=flat-square&logo=python)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Demo-orange?style=flat-square)]()
+[![Python](https://img.shields.io/badge/Python-3.9+-2ecc71?style=flat-square&logo=python)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-3498db?style=flat-square)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Alpha-e74c3c?style=flat-square)]()
 
 ---
 
-## 💡 核心理念
+## Core Philosophy
 
-传统方式需要维护一堆文本文件：
+Traditional AI agent development requires maintaining piles of configuration files:
 
 ```
-system_prompt.txt      ← 500 行文字描述
-skills_description.md  ← 200 行能力说明
-rules.txt              ← 100 行规则列表
-alignment_guide.md     ← 300 行对齐指南
+system_prompt.txt      (500 lines)
+skills_description.md  (200 lines)
+rules.txt              (100 lines)
+alignment_guide.md     (300 lines)
+… more config files
 ```
 
-**AgentForge** 把这一切变成可执行的 Python 代码：
+**I.QUEUE** transforms all of this into clean, executable Python code.
+
+---
+
+## The Idea
+
+Define everything as code:
 
 ```python
-# 技能 = 装饰器函数
+# A skill = a typed Python function with metadata
 @skill(name="understand_intent", priority=10)
-def understand_intent(text: str) -> dict: ...
+def understand_intent(text: str) -> dict:
+    """Extract user intent from input."""
+    return {"intent": "...", "confidence": 0.95}
 
-# 规则 = 约束函数
+# A rule = an executable constraint
 @rule(name="no_harmful", severity="block")
-def no_harmful_input(text: str) -> tuple: ...
+def check_safety(output: str) -> tuple[bool, str]:
+    is_safe = not contains_harm(output)
+    return is_safe, "Output violates safety policy"
 
-# 分阶段执行 = Pipeline
+# Pipeline = explicit execution order
 pipeline = Pipeline([
-    Phase("understand_intent", intent_phase),
-    Phase("chain_of_thought",  reasoning_phase),
-    Phase("format_output",     output_phase),
+    Phase("input_analysis", understand_intent),
+    Phase("reasoning", chain_of_thought),
+    Phase("output_formatting", format_response),
 ])
 
-# 对齐 = 加权公式
+# Alignment = quantifiable formula
 #   score = 0.40×harmlessness + 0.35×helpfulness + 0.25×conciseness
 alignment = AlignmentFormula([
     AlignmentDimension("harmlessness", weight=0.40, scorer=..., floor=0.75),
@@ -45,34 +56,40 @@ alignment = AlignmentFormula([
     AlignmentDimension("conciseness",  weight=0.25, scorer=...),
 ])
 
-# 组装智能体
+# Assemble the agent
 agent = Agent(name="MyAgent", pipeline=pipeline, alignment=alignment)
 result = agent.run("Calculate 42 * 7")
 ```
 
 ---
 
-## ✨ 特性
+## Features
 
-| 模块 | 传统方式 | AgentForge |
-|------|---------|------------|
-| **技能定义** | 文字描述列表 | `@skill` 装饰器函数 |
-| **行为规则** | 规则文本文件 | `@rule` 约束函数 |
-| **执行顺序** | 隐含在 Prompt 里 | 显式 `Pipeline` 阶段 |
-| **对齐验证** | 主观文字指南 | 可计算的加权公式 |
-| **调试** | 几乎不可能 | 每个阶段有计时和状态 |
+| Aspect | Traditional | I.QUEUE |
+|--------|-----------|---------|
+| **Skill Definition** | Text descriptions | `@skill` functions |
+| **Rule Management** | Config files | `@rule` constraints |
+| **Execution Flow** | Hidden in prompts | Explicit `Pipeline` stages |
+| **Alignment** | Vague guidelines | Computable weighted formula |
+| **Debugging** | Nearly impossible | Stage-by-stage tracking |
 
 ---
 
-## 🚀 快速开始
+## Quick Start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/agentforge.git
-cd agentforge
-python demo/example_agent.py
+git clone https://github.com/zhouyunhong2025-cloud/XIAOJIE.git
+cd XIAOJIE/I.QUEUE
+pip install -r requirements.txt
 ```
 
-运行输出示例：
+Run the example:
+
+```bash
+python example_agent.py
+```
+
+Sample output:
 
 ```
 ╔══════════════════════════════════════╗
@@ -98,37 +115,40 @@ Alignment Score: 0.965 (PASS ✅)
 
 ---
 
-## 📁 项目结构
+## Project Structure
 
 ```
-agentforge/
-├── agentforge/
-│   ├── core/
-│   │   ├── skill.py       # @skill 装饰器系统
-│   │   ├── rule.py        # @rule 约束引擎
-│   │   ├── pipeline.py    # 分阶段执行管道
-│   │   ├── alignment.py   # 对齐公式计算
-│   │   └── agent.py       # Agent 主类
-│   └── __init__.py
-├── demo/
-│   └── example_agent.py   # 完整示例
-└── README.md
+I.QUEUE/
+├── core/
+│   ├── skill.py          # @skill decorator system
+│   ├── rule.py           # @rule constraint engine
+│   ├── pipeline.py       # Pipeline execution
+│   ├── alignment.py      # Alignment formula calculation
+│   └── agent.py          # Agent orchestrator
+├── llm/
+│   ├── openai_backend.py
+│   └── anthropic_backend.py
+├── memory.py             # Memory layer
+├── example_agent.py      # Complete example
+├── pyproject.toml        # Project configuration
+├── requirements.txt      # Dependencies
+└── README.md             # This file
 ```
 
 ---
 
-## 📖 核心 API
+## Core API
 
-### `@skill` — 定义技能
+### `@skill` — Define a Skill
 
 ```python
 @skill(name="translate", tags=["language"], priority=7)
 def translate(text: str, target_lang: str = "en") -> str:
     """Translate text to target language."""
-    ...
+    return translated_text
 ```
 
-### `@rule` — 定义规则
+### `@rule` — Define a Rule
 
 ```python
 @rule(name="max_length", severity="warn", phase="post")
@@ -137,7 +157,7 @@ def check_length(output: str) -> tuple[bool, str]:
     return ok, "Output exceeds 1000 characters"
 ```
 
-### `Pipeline` — 定义执行顺序
+### `Pipeline` — Define Execution Order
 
 ```python
 pipeline = Pipeline([
@@ -147,7 +167,7 @@ pipeline = Pipeline([
 ])
 ```
 
-### `AlignmentFormula` — 量化对齐
+### `AlignmentFormula` — Quantify Alignment
 
 ```python
 formula = AlignmentFormula(
@@ -158,21 +178,22 @@ formula = AlignmentFormula(
     threshold=0.70,
 )
 report = formula.evaluate(agent_output)
-print(report)  # 可视化评分条
+print(report)  # Visualized score bars
 ```
 
 ---
 
-## 🗺️ 路线图
+## Roadmap
 
-- [ ] 支持 LLM 后端接入（OpenAI / Anthropic）
-- [ ] 技能依赖图自动解析
-- [ ] 对齐分数历史追踪
-- [ ] YAML/JSON 配置导出
-- [ ] Web UI 可视化 Pipeline
+- [ ] Support LLM backends (OpenAI / Anthropic)
+- [ ] Auto-parse skill dependency graphs
+- [ ] Alignment score history tracking
+- [ ] YAML/JSON configuration export
+- [ ] Web UI for Pipeline visualization
+- [ ] Interactive tutorials
 
 ---
 
-## 📄 License
+## License
 
 MIT © 2025
