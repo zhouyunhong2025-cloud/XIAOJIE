@@ -28,10 +28,10 @@ class AgentDesignPlan:
         output = []
         
         # 标题和基本信息
-        output.append("# 🤖 Agent 智能设计方案")
+        output.append("# 🤖 Agent Intelligent Design Plan")
         output.append("")
-        output.append(f"**生成时间**: {datetime.fromisoformat(self.created_at).strftime('%Y-%m-%d %H:%M:%S')}")
-        output.append(f"**方案ID**: `plan_{datetime.now().strftime('%Y%m%d_%H%M%S')}`")
+        output.append(f"**Generated Time**: {datetime.fromisoformat(self.created_at).strftime('%Y-%m-%d %H:%M:%S')}")
+        output.append(f"**Plan ID**: `plan_{datetime.now().strftime('%Y%m%d_%H%M%S')}`")
         output.append("")
         
         # Requirement
@@ -40,40 +40,40 @@ class AgentDesignPlan:
         output.append(f"> {self.requirement}")
         output.append("")
         
-        # 需求分析
-        output.append("## 🔍 需求分析")
+        # Requirement Analysis
+        output.append("## 🔍 Requirement Analysis")
         output.append("━━━━━━━━━━━━━━━━━━━")
         
         if self.analysis:
-            output.append(f"**主要类型**: `{self.analysis.primary_type.upper()}`")
-            output.append(f"**分析信心**: {self.analysis.confidence:.0%}")
+            output.append(f"**Primary Type**: `{self.analysis.primary_type.upper()}`")
+            output.append(f"**Analysis Confidence**: {self.analysis.confidence:.0%}")
             
             if self.analysis.secondary_types:
-                output.append(f"**辅助类型**: {', '.join([f'`{t}`' for t in self.analysis.secondary_types])}")
+                output.append(f"**Secondary Type**: {', '.join([f'`{t}`' for t in self.analysis.secondary_types])}")
             
             if self.analysis.keywords:
-                output.append(f"**关键词**: {', '.join(self.analysis.keywords[:5])}")
+                output.append(f"**Keywords**: {', '.join(self.analysis.keywords[:5])}")
         
         output.append("")
         
         # 推荐的技能
-        output.append("## ✨ 推荐技能组合")
+        output.append("## ✨ Recommended Skill Combination")
         output.append("━━━━━━━━━━━━━━━━━━━")
         
         local_skills = [s for s in self.skills if s.source == SkillSource.LOCAL]
         opensource_skills = [s for s in self.skills if s.source != SkillSource.LOCAL]
         
         if local_skills:
-            output.append("### 📦 核心技能（本地）")
+            output.append("### 📦 Core Skills (Local)")
             output.append("")
             
             for idx, skill in enumerate(local_skills, 1):
                 output.append(f"**{idx}. {skill.name}**")
                 output.append(f"- {skill.description}")
-                output.append(f"- 优先级: P{skill.priority} | 信心: {skill.confidence:.0%}")
+                output.append(f"- Priority: P{skill.priority} | Confidence: {skill.confidence:.0%}")
                 
                 if skill.config:
-                    output.append("- 推荐配置:")
+                    output.append("- Recommended Config:")
                     for key, value in skill.config.items():
                         if isinstance(value, dict):
                             output.append(f"  - `{key}`:")
@@ -87,9 +87,9 @@ class AgentDesignPlan:
                 output.append("")
         
         if opensource_skills:
-            output.append("### 🚀 高级功能（开源推荐）")
+            output.append("### 🚀 Advanced Features (Open-source Recommendations)")
             output.append("")
-            output.append("> 这些是可选的开源项目，可以进一步增强 Agent 的能力。")
+            output.append("> These are optional open-source projects that can further enhance Agent capabilities.")
             output.append("")
             
             for idx, skill in enumerate(opensource_skills, 1):
@@ -101,16 +101,16 @@ class AgentDesignPlan:
                 
                 output.append(f"**{idx}. {source_emoji} {skill.name}** ({skill.source.value})")
                 output.append(f"- {skill.description}")
-                output.append(f"- 优先级: P{skill.priority} | 匹配度: {skill.confidence:.0%}")
+                output.append(f"- Priority: P{skill.priority} | 匹配度: {skill.confidence:.0%}")
                 
                 if skill.url:
-                    output.append(f"- 🔗 项目地址: [{skill.url}]({skill.url})")
+                    output.append(f"- 🔗 Project URL: [{skill.url}]({skill.url})")
                 
                 output.append("")
         
         # 规则配置
         if self.rules:
-            output.append("## 🛡️ 应用规则")
+            output.append("## 🛡️ Rules")
             output.append("━━━━━━━━━━━━━━━━━━━")
             
             for rule in self.rules:
@@ -118,9 +118,9 @@ class AgentDesignPlan:
             
             output.append("")
         
-        # 记忆配置
+        # Memory Configuration
         if self.memory_config:
-            output.append("## 🧠 记忆配置")
+            output.append("## 🧠 Memory Configuration")
             output.append("━━━━━━━━━━━━━━━━━━━")
             
             for key, value in self.memory_config.items():
@@ -133,10 +133,10 @@ class AgentDesignPlan:
         
         # 对齐参数
         if self.alignment:
-            output.append("## 🎯 能力对齐")
+            output.append("## 🎯 Capability Alignment")
             output.append("━━━━━━━━━━━━━━━━━━━")
             output.append("")
-            output.append("这些参数定义了 Agent 在不同维度上的优先级:")
+            output.append("这些参数定义了 Agent 在不同维度上的Priority:")
             output.append("")
             
             for key, value in sorted(self.alignment.items()):
@@ -146,8 +146,8 @@ class AgentDesignPlan:
             
             output.append("")
         
-        # 实施建议
-        output.append("## 💡 实施建议")
+        # Implementation Recommendations
+        output.append("## 💡 Implementation Recommendations")
         output.append("━━━━━━━━━━━━━━━━━━━")
         
         if self.analysis and self.analysis.recommendations:
@@ -156,9 +156,9 @@ class AgentDesignPlan:
         
         output.append("")
         
-        # 替代方案
+        # Alternatives
         if self.alternatives:
-            output.append("## 🔄 替代方案")
+            output.append("## 🔄 Alternatives")
             output.append("━━━━━━━━━━━━━━━━━━━")
             
             for scenario, options in self.alternatives.items():
@@ -169,30 +169,30 @@ class AgentDesignPlan:
             output.append("")
         
         # 执行步骤
-        output.append("## 🚀 下一步执行")
+        output.append("## 🚀 Next Steps")
         output.append("━━━━━━━━━━━━━━━━━━━")
         output.append("")
-        output.append("1. **检查**: 仔细阅读本方案，确认所有配置符合预期")
-        output.append("2. **修改**: 如需要，可以修改任何配置项")
-        output.append("3. **确认**: 确认无误后，按下**One-Click Deploy**按钮")
-        output.append("4. **运行**: Agent 会自动启动并开始处理")
-        output.append("5. **监测**: 查看实时输出日志，确保一切正常")
+        output.append("1. **Review**: Carefully read this plan and confirm all settings meet expectations")
+        output.append("2. **Modify**: 如需要，可以Modify任何配置items")
+        output.append("3. **Confirm**: Confirm无误后，按下**One-Click Deploy**button")
+        output.append("4. **Run**: Agent will automatically start and begin processing")
+        output.append("5. **Monitor**: View real-time output logs to ensure everything is working")
         output.append("")
         
-        # 快速参考
-        output.append("## 📚 快速参考")
+        # Quick Reference
+        output.append("## 📚 Quick Reference")
         output.append("━━━━━━━━━━━━━━━━━━━")
         output.append("")
-        output.append(f"**技能总数**: {len(self.skills)} 个")
-        output.append(f"**本地技能**: {len(local_skills)} 个 | **开源推荐**: {len(opensource_skills)} 个")
-        output.append(f"**规则数**: {len(self.rules)} 个")
-        output.append(f"**记忆配置**: {len(self.memory_config)} 项")
-        output.append(f"**对齐维度**: {len(self.alignment)} 个")
+        output.append(f"**Total Skills**: {len(self.skills)} items")
+        output.append(f"**Local Skills**: {len(local_skills)} items | **Open-source Recommendations**: {len(opensource_skills)} items")
+        output.append(f"**Number of Rules**: {len(self.rules)} items")
+        output.append(f"**Memory Configuration**: {len(self.memory_config)} items")
+        output.append(f"**Alignment Dimensions**: {len(self.alignment)} items")
         
         output.append("")
         output.append("---")
         output.append("")
-        output.append("*这个方案由 I.QUEUE Agent 智能设计系统自动生成。*")
+        output.append("*这items方案由 I.QUEUE Agent 智能设计系统自动生成。*")
         
         return "\n".join(output)
     
@@ -201,7 +201,7 @@ class AgentDesignPlan:
         output = []
         
         output.append("# Agent 配置文件")
-        output.append("# 自动生成，请勿手动修改")
+        output.append("# 自动生成，请勿手动Modify")
         output.append("")
         
         output.append("metadata:")
@@ -269,10 +269,10 @@ class PlanGenerator:
         
         Args:
             requirement: 用户原始需求
-            analysis: 需求分析结果
-            skills: 推荐的技能列表
+            analysis: Requirement Analysis Result
+            skills: List of recommended skills
             rules: 应用的规则列表
-            memory_config: 记忆配置
+            memory_config: Memory Configuration
             alignment: 对齐参数
             
         Returns:
@@ -287,25 +287,25 @@ class PlanGenerator:
         plan.memory_config = memory_config
         plan.alignment = alignment
         
-        # 生成替代方案
+        # 生成Alternatives
         plan.alternatives = self._generate_alternatives(analysis)
         
         return plan
     
     def _generate_alternatives(self, analysis: RequirementAnalysis) -> Dict[str, List[str]]:
-        """生成替代方案"""
+        """生成Alternatives"""
         alternatives = {}
         
         if analysis.primary_type == "summary":
-            alternatives["总结长度"] = [
-                "简要版 (3-5 项要点)",
-                "标准版 (7-10 项要点)",
-                "详细版 (20+ 项要点)"
+            alternatives["Summary Length"] = [
+                "Brief (3-5 items要点)",
+                "Standard (7-10 items要点)",
+                "Detailed (20+ items要点)"
             ]
-            alternatives["更新频率"] = [
-                "每日一次",
-                "每周一次",
-                "按需更新"
+            alternatives["Update Frequency"] = [
+                "Daily",
+                "Weekly",
+                "On Demand"
             ]
         
         elif analysis.primary_type == "curation":
@@ -316,7 +316,7 @@ class PlanGenerator:
                 "多源聚合"
             ]
             alternatives["推荐算法"] = [
-                "关键词匹配",
+                "Keywords匹配",
                 "语义相似度",
                 "协作过滤",
                 "混合算法"
@@ -325,7 +325,7 @@ class PlanGenerator:
         elif analysis.primary_type == "report":
             alternatives["报告风格"] = [
                 "简明版",
-                "标准版",
+                "Standard",
                 "详细分析版"
             ]
             alternatives["包含元素"] = [

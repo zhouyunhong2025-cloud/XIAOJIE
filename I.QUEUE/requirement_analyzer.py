@@ -1,6 +1,6 @@
 """
-需求分析器 - 理解用户的真实需求
-将自然语言需求转化为结构化的分析结果
+Requirement Analyzer - Understand user's true needs
+Convert natural language requirements into structured analysis results
 """
 
 from typing import Dict, List, Tuple, Any
@@ -9,7 +9,7 @@ from dataclasses import dataclass
 
 @dataclass
 class RequirementAnalysis:
-    """需求分析结果"""
+    """Requirement Analysis Result"""
     requirement: str
     primary_type: str  # "summary", "curation", "report"
     secondary_types: List[str]
@@ -22,11 +22,11 @@ class RequirementAnalysis:
 
 class RequirementAnalyzer:
     """
-    智能需求分析器
+    Intelligent Requirement Analyzer
     将用户的自然语言需求转化为 Agent 设计指导
     """
     
-    # 需求类型的关键词匹配
+    # 需求类型的Keywords匹配
     TYPE_KEYWORDS = {
         "summary": {
             "keywords": ["总结", "汇总", "浓缩", "简化", "摘要", "梳理", "归纳",
@@ -85,7 +85,7 @@ class RequirementAnalyzer:
     
     def analyze(self, requirement: str) -> RequirementAnalysis:
         """
-        分析用户需求
+        分析User Requirement
         
         Args:
             requirement: 用户的需求描述
@@ -95,13 +95,13 @@ class RequirementAnalyzer:
         """
         requirement_lower = requirement.lower()
         
-        # 1. 识别主要类型
+        # 1. 识别Primary Type
         primary_type, primary_confidence = self._identify_primary_type(requirement_lower)
         
         # 2. 识别次要类型
         secondary_types = self._identify_secondary_types(requirement_lower, primary_type)
         
-        # 3. 提取关键词
+        # 3. 提取Keywords
         keywords = self._extract_keywords(requirement_lower)
         
         # 4. 获取配置建议
@@ -115,7 +115,7 @@ class RequirementAnalyzer:
             type_config.get("memory", {})
         )
         
-        # 6. 设置对齐优先级
+        # 6. 设置对齐Priority
         alignment_hints = type_config.get("alignment", {})
         
         # 7. 生成推荐
@@ -171,8 +171,8 @@ class RequirementAnalyzer:
         return secondary
     
     def _extract_keywords(self, requirement_lower: str) -> List[str]:
-        """提取关键词"""
-        # 简单的关键词提取（可以升级为 NLP）
+        """提取Keywords"""
+        # 简单的Keywords提取（可以升级为 NLP）
         all_keywords = []
         
         for config in self.TYPE_KEYWORDS.values():
@@ -186,10 +186,10 @@ class RequirementAnalyzer:
                            secondary_types: List[str],
                            keywords: List[str],
                            default_memory: Dict) -> Dict[str, Any]:
-        """推断记忆配置需求"""
+        """推断Memory Configuration需求"""
         memory = default_memory.copy()
         
-        # 根据关键词调整记忆
+        # 根据Keywords调整记忆
         if any(w in keywords for w in ["历史", "历年", "archive", "history"]):
             memory["retention_days"] = 365
             memory["archive"] = True
@@ -198,7 +198,7 @@ class RequirementAnalyzer:
             memory["learn_from_feedback"] = True
             memory["adaptive"] = True
         
-        if any(w in keywords for w in ["个性", "偏好", "preference", "custom"]):
+        if any(w in keywords for w in ["items性", "偏好", "preference", "custom"]):
             memory["personalization"] = True
         
         return memory
@@ -212,7 +212,7 @@ class RequirementAnalyzer:
         
         if primary_type == "summary":
             recommendations.extend([
-                "建议每天固定时间运行，形成工作习惯",
+                "建议每天固定时间Run，形成工作习惯",
                 "可以配合日历使用，按周/月生成汇总",
                 "保存摘要历史，方便对比和回顾"
             ])
@@ -232,29 +232,29 @@ class RequirementAnalyzer:
         return recommendations
     
     def explain_analysis(self, analysis: RequirementAnalysis) -> str:
-        """生成人类可读的分析解释"""
+        """Generate human-readable analysis explanation"""
         output = []
         
-        output.append(f"🔍 需求分析结果")
+        output.append(f"🔍 Requirement Analysis")
         output.append(f"━━━━━━━━━━━━━━━━━━━")
         output.append(f"")
         
-        output.append(f"📌 主要需求类型: {analysis.primary_type.upper()}")
-        output.append(f"   信心度: {analysis.confidence:.0%}")
+        output.append(f"📌 Primary Type: {analysis.primary_type.upper()}")
+        output.append(f"   Confidence: {analysis.confidence:.0%}")
         
         if analysis.secondary_types:
             output.append(f"")
-            output.append(f"🔄 次要需求类型:")
+            output.append(f"🔄 Secondary Types:")
             for sec_type in analysis.secondary_types:
                 output.append(f"   • {sec_type}")
         
         output.append(f"")
-        output.append(f"🎯 识别的关键词:")
+        output.append(f"🎯 Identified Keywords:")
         for keyword in analysis.keywords[:5]:
             output.append(f"   • {keyword}")
         
         output.append(f"")
-        output.append(f"💡 建议:")
+        output.append(f"💡 Recommendations:")
         for rec in analysis.recommendations:
             output.append(f"   • {rec}")
         

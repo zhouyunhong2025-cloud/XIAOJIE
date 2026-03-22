@@ -1,6 +1,6 @@
 """
-Skill 推荐器 - 智能选择本地和开源技能
-根据需求分析，为 Agent 推荐最优的技能组合
+Skill Recommender - Intelligent selection of local and open-source skills
+Based on requirements analysis, recommend optimal skill combinations for Agent
 """
 
 from typing import List, Dict, Any, Optional
@@ -9,37 +9,37 @@ from enum import Enum
 
 
 class SkillSource(Enum):
-    """技能来源"""
-    LOCAL = "local"  # 本地内置技能
-    GITHUB = "github"  # GitHub 开源项目
-    HUGGINGFACE = "huggingface"  # HuggingFace 模型
-    PYPI = "pypi"  # PyPI 包
+    """Skill Source"""
+    LOCAL = "local"  # Built-in local skills
+    GITHUB = "github"  # GitHub open-source projects
+    HUGGINGFACE = "huggingface"  # HuggingFace models
+    PYPI = "pypi"  # PyPI packages
 
 
 @dataclass
 class SkillRecommendation:
-    """技能推荐"""
+    """Skill Recommendation"""
     name: str
     description: str
     source: SkillSource
     url: Optional[str] = None
-    priority: int = 1  # 1-5，1 最高优先级
+    priority: int = 1  # 1-5, 1 is highest priority
     confidence: float = 0.8
-    config: Dict[str, Any] = None  # 推荐的配置
-    alternatives: List[str] = None  # 替代方案
+    config: Dict[str, Any] = None  # Recommended configuration
+    alternatives: List[str] = None  # Alternatives
 
 
 class SkillRecommender:
     """
-    智能技能推荐器
-    根据需求分析结果，推荐最适合的技能
+    Intelligent Skill Recommender
+    Based on requirement analysis results, recommend the most suitable skills
     """
     
-    # 本地技能库
+    # Local Skill Library
     LOCAL_SKILLS = {
         "daily_summarizer": {
             "name": "Daily Summarizer",
-            "description": "将长文本浓缩成 5-10 个关键要点",
+            "description": "Compress long text into 5-10 key points",
             "tags": ["summary", "compress", "extract"],
             "priority": 1,
             "config": {
@@ -50,7 +50,7 @@ class SkillRecommender:
         },
         "news_curator": {
             "name": "News Curator",
-            "description": "精选和分类相关内容，支持多个话题",
+            "description": "Curate and categorize relevant content, supporting multiple topics",
             "tags": ["curation", "filter", "categorize"],
             "priority": 1,
             "config": {
@@ -61,7 +61,7 @@ class SkillRecommender:
         },
         "report_generator": {
             "name": "Report Generator",
-            "description": "自动生成专业的日报/周报/月报",
+            "description": "Auto-generate professional daily/weekly/monthly reports",
             "tags": ["report", "generate", "statistics"],
             "priority": 1,
             "config": {
@@ -72,11 +72,11 @@ class SkillRecommender:
         }
     }
     
-    # 开源技能推荐库（示例）
+    # 开源Skill Recommendation库（示例）
     OPENSOURCE_SKILLS = {
         "text_analysis": {
             "name": "Text Analysis Suite",
-            "description": "高级文本分析和情感分析",
+            "description": "Advanced text analysis and sentiment analysis",
             "source": SkillSource.GITHUB,
             "url": "https://github.com/facebookresearch/fastText",
             "tags": ["analysis", "sentiment", "nlp"],
@@ -85,7 +85,7 @@ class SkillRecommender:
         },
         "content_enrichment": {
             "name": "Content Enrichment",
-            "description": "使用 NER 和实体链接丰富内容",
+            "description": "Enrich content using NER and entity linking",
             "source": SkillSource.GITHUB,
             "url": "https://github.com/explosion/spacy",
             "tags": ["enrichment", "nlp", "entities"],
@@ -94,7 +94,7 @@ class SkillRecommender:
         },
         "advanced_summarization": {
             "name": "Advanced Summarization",
-            "description": "基于 Transformers 的高级摘要生成",
+            "description": "Advanced summarization based on Transformers",
             "source": SkillSource.HUGGINGFACE,
             "url": "https://huggingface.co/models?task=summarization",
             "tags": ["summary", "transformer", "ml"],
@@ -103,7 +103,7 @@ class SkillRecommender:
         },
         "semantic_search": {
             "name": "Semantic Search",
-            "description": "语义搜索和内容检索",
+            "description": "Semantic search and content retrieval",
             "source": SkillSource.GITHUB,
             "url": "https://github.com/facebookresearch/faiss",
             "tags": ["search", "retrieval", "semantic"],
@@ -112,7 +112,7 @@ class SkillRecommender:
         },
         "data_visualization": {
             "name": "Data Visualization",
-            "description": "自动生成数据可视化图表",
+            "description": "Auto-generate data visualization charts",
             "source": SkillSource.PYPI,
             "url": "https://pypi.org/project/plotly/",
             "tags": ["visualization", "charts", "data"],
@@ -121,7 +121,7 @@ class SkillRecommender:
         },
         "web_scraping": {
             "name": "Web Scraping",
-            "description": "高效的网页内容抓取",
+            "description": "Efficient web scraping",
             "source": SkillSource.PYPI,
             "url": "https://pypi.org/project/scrapy/",
             "tags": ["scraping", "web", "crawl"],
@@ -136,20 +136,20 @@ class SkillRecommender:
                         keywords: List[str],
                         include_opensource: bool = True) -> List[SkillRecommendation]:
         """
-        根据需求推荐技能
+        Recommend skills based on requirements
         
         Args:
-            requirement_type: 主要需求类型
-            secondary_types: 次要需求类型列表
-            keywords: 提取的关键词
-            include_opensource: 是否包含开源推荐
+            requirement_type: Primary requirement type
+            secondary_types: List of secondary types
+            keywords: Extracted keywords
+            include_opensource: Whether to include open-source recommendations
             
         Returns:
-            推荐的技能列表
+            List of recommended skills
         """
         recommendations = []
         
-        # 1. 添加必要的本地技能
+        # 1. 添加必要的Local Skills
         local_skills = self._get_required_local_skills(requirement_type)
         for skill_name in local_skills:
             if skill_name in self.LOCAL_SKILLS:
@@ -164,7 +164,7 @@ class SkillRecommender:
                 )
                 recommendations.append(rec)
         
-        # 2. 添加辅助本地技能（如果有次要类型）
+        # 2. 添加辅助Local Skills（如果有次要类型）
         for secondary_type in secondary_types:
             auxiliary_skills = self._get_required_local_skills(secondary_type)
             for skill_name in auxiliary_skills:
@@ -182,7 +182,7 @@ class SkillRecommender:
                     )
                     recommendations.append(rec)
         
-        # 3. 添加开源推荐
+        # 3. 添加Open-source Recommendations
         if include_opensource:
             opensource_recs = self._recommend_opensource_skills(
                 requirement_type,
@@ -191,13 +191,13 @@ class SkillRecommender:
             )
             recommendations.extend(opensource_recs)
         
-        # 4. 按优先级和信心度排序
+        # 4. 按Priority和Confidence度排序
         recommendations.sort(key=lambda x: (x.priority, -x.confidence))
         
         return recommendations
     
     def _get_required_local_skills(self, requirement_type: str) -> List[str]:
-        """获取某个需求类型必需的本地技能"""
+        """Get required local skills for certain requirement types"""
         mapping = {
             "summary": ["daily_summarizer"],
             "curation": ["news_curator"],
@@ -209,7 +209,7 @@ class SkillRecommender:
                                     requirement_type: str,
                                     secondary_types: List[str],
                                     keywords: List[str]) -> List[SkillRecommendation]:
-        """推荐开源技能"""
+        """Recommend open-source skills"""
         recommendations = []
         
         # 根据需求类型组合次要类型
@@ -220,13 +220,13 @@ class SkillRecommender:
             use_cases = skill_info.get("use_cases", [])
             tags = skill_info.get("tags", [])
             
-            # 检查是否适用
+            # Review是否适用
             match_score = 0
             for req_type in all_types:
                 if req_type in use_cases:
                     match_score += 1
             
-            # 检查关键词匹配
+            # ReviewKeywords匹配
             keyword_matches = sum(1 for kwd in keywords if kwd in tags)
             if keyword_matches > 0:
                 match_score += keyword_matches * 0.5
@@ -249,14 +249,14 @@ class SkillRecommender:
                         skill_rec: SkillRecommendation,
                         custom_config: Dict[str, Any]) -> SkillRecommendation:
         """
-        自定义技能配置
+        Customize skill configuration
         
         Args:
-            skill_rec: 原始推荐
-            custom_config: 自定义配置
+            skill_rec: Original recommendation
+            custom_config: Custom configuration
             
         Returns:
-            更新后的推荐
+            Updated recommendation
         """
         if skill_rec.config is None:
             skill_rec.config = {}
@@ -265,10 +265,10 @@ class SkillRecommender:
         return skill_rec
     
     def format_recommendations(self, recommendations: List[SkillRecommendation]) -> str:
-        """格式化推荐为人类可读的形式"""
+        """Format recommendation as human-readable"""
         output = []
         
-        output.append("✨ 推荐的技能")
+        output.append("✨ Recommended Skills")
         output.append("━━━━━━━━━━━━━━━━━━━")
         output.append("")
         
@@ -282,13 +282,13 @@ class SkillRecommender:
             
             output.append(f"{idx}. {emoji} {rec.name}")
             output.append(f"   {rec.description}")
-            output.append(f"   来源: {rec.source.value} | 优先级: P{rec.priority} | 信心: {rec.confidence:.0%}")
+            output.append(f"   来源: {rec.source.value} | Priority: P{rec.priority} | Confidence: {rec.confidence:.0%}")
             
             if rec.url:
                 output.append(f"   🔗 {rec.url}")
             
             if rec.config:
-                output.append(f"   ⚙️ 建议配置:")
+                output.append(f"   ⚙️ Recommended Config:")
                 for key, value in rec.config.items():
                     output.append(f"      • {key}: {value}")
             
