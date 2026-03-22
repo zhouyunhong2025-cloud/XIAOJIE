@@ -1,116 +1,127 @@
-# I.QUEUE
+# I.QUEUE Core Package
 
-**Build AI agents with Python functions—not giant text prompts.**
+**Your AI Guardian. Fully Self-Configuring.**
 
-[![Python](https://img.shields.io/badge/Python-3.9+-2ecc71?style=flat-square&logo=python)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.10+-2ecc71?style=flat-square&logo=python)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-3498db?style=flat-square)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Alpha-e74c3c?style=flat-square)]()
+[![Status](https://img.shields.io/badge/Status-v0.1.0-e74c3c?style=flat-square)]()
 
 ---
 
-## Core Philosophy
+## What You Get
 
-Traditional AI agent development requires maintaining piles of configuration files:
+Your AI automatically picks and configures:
 
-```
-system_prompt.txt      (500 lines)
-skills_description.md  (200 lines)
-rules.txt              (100 lines)
-alignment_guide.md     (300 lines)
-… more config files
-```
+| Element | What It Does |
+|---------|-------------|
+| **Memory** | How to remember context across conversations |
+| **Skills** | What capabilities to use for your tasks |
+| **Preferences** | How to behave and prioritize options |
+| **Rules** | What boundaries and safety constraints to follow |
 
-**I.QUEUE** transforms all of this into clean, executable Python code.
+**You describe once. System designs everything.**
 
 ---
 
-## The Idea
+## Visual Showcase
 
-Define everything as code:
+![Core Concept](../docs/ScreenShot_2026-03-22_153838_603.png)
+
+![Pre-Built Cartridges](../docs/ScreenShot_2026-03-22_153857_163.png)
+
+---
+
+## How It Works
+
+1. **Input Your Need** → Natural language description
+2. **AI Analyzes** → RequirementAnalyzer understands your need
+3. **Recommends Config** → SkillRecommender selects best Memory/Skills/Preferences/Rules
+4. **Generates Plan** → PlanGenerator creates markdown design document
+5. **Deploy** → One-click execution with real-time monitoring
+
+---
+
+## Four Core Components
+
+### 1. RequirementAnalyzer
+Understands what you actually need from natural language.
 
 ```python
-# A skill = a typed Python function with metadata
-@skill(name="understand_intent", priority=10)
-def understand_intent(text: str) -> dict:
-    """Extract user intent from input."""
-    return {"intent": "...", "confidence": 0.95}
+from requirement_analyzer import RequirementAnalyzer
 
-# A rule = an executable constraint
-@rule(name="no_harmful", severity="block")
-def check_safety(output: str) -> tuple[bool, str]:
-    is_safe = not contains_harm(output)
-    return is_safe, "Output violates safety policy"
+analyzer = RequirementAnalyzer()
+analysis = analyzer.analyze("Summarize my daily work")
+# Returns: type, keywords, memory_needs, alignment_hints
+```
 
-# Pipeline = explicit execution order
-pipeline = Pipeline([
-    Phase("input_analysis", understand_intent),
-    Phase("reasoning", chain_of_thought),
-    Phase("output_formatting", format_response),
-])
+### 2. SkillRecommender
+Recommends optimal skills (local + open-source).
 
-# Alignment = quantifiable formula
-#   score = 0.40×harmlessness + 0.35×helpfulness + 0.25×conciseness
-alignment = AlignmentFormula([
-    AlignmentDimension("harmlessness", weight=0.40, scorer=..., floor=0.75),
-    AlignmentDimension("helpfulness",  weight=0.35, scorer=..., floor=0.50),
-    AlignmentDimension("conciseness",  weight=0.25, scorer=...),
-])
+```python
+from skill_recommender import SkillRecommender
 
-# Assemble the agent
-agent = Agent(name="MyAgent", pipeline=pipeline, alignment=alignment)
-result = agent.run("Calculate 42 * 7")
+recommender = SkillRecommender()
+recommendations = recommender.recommend_skills(
+    requirement_type="summary",
+    include_opensource=True
+)
+# Returns: Priority-ranked skill suggestions
+```
+
+### 3. PlanGenerator
+Creates complete design documents you can review.
+
+```python
+from plan_generator import PlanGenerator
+
+generator = PlanGenerator()
+plan = generator.generate_plan(
+    requirement="Your need",
+    analysis=analysis_result,
+    skills=recommended_skills
+)
+# Returns: Markdown (human review) + YAML (machine execute)
+```
+
+### 4. AgentAutoDesigner
+Orchestrates all components end-to-end.
+
+```python
+from agent_auto_designer import AgentAutoDesigner
+
+designer = AgentAutoDesigner()
+plan = designer.design_agent("Your natural language need")
+# Returns: Complete design ready to deploy
 ```
 
 ---
 
-## Features
+## Pre-Built Skills
 
-| Aspect | Traditional | I.QUEUE |
-|--------|-----------|---------|
-| **Skill Definition** | Text descriptions | `@skill` functions |
-| **Rule Management** | Config files | `@rule` constraints |
-| **Execution Flow** | Hidden in prompts | Explicit `Pipeline` stages |
-| **Alignment** | Vague guidelines | Computable weighted formula |
-| **Debugging** | Nearly impossible | Stage-by-stage tracking |
+Three production-ready skills included:
+
+| Skill | Purpose | Use Case |
+|-------|---------|----------|
+| **DailySummarizer** | Compress content into key points | Summarize work, news, articles |
+| **NewsCurator** | Select best content from sources | Curate news, research, updates |
+| **ReportGenerator** | Auto-generate professional reports | Daily/weekly/monthly reports |
 
 ---
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/zhouyunhong2025-cloud/XIAOJIE.git
-cd XIAOJIE/I.QUEUE
+# Install with all features
 pip install -r requirements.txt
-```
 
-Run the example:
+# Run the intelligent designer
+python quick_start.py "Summarize today's work"
 
-```bash
-python example_agent.py
-```
-
-Sample output:
-
-```
-╔══════════════════════════════════════╗
-  Agent: DemoAgent
-  📦 Skills (3):
-     • understand_intent [priority=10]
-     • chain_of_thought  [priority=8]
-     • format_output     [priority=5]
-  📏 Rules (2):
-     • no_harmful_input [block]
-     • output_not_empty [error]
-  🔗 Pipeline:
-     understand_intent → chain_of_thought → format_output
-  ⚖️  Alignment:
-     score = 0.40×harmlessness + 0.35×helpfulness + 0.25×conciseness
-╚══════════════════════════════════════╝
-
-Alignment Score: 0.965 (PASS ✅)
-  harmlessness   [████████████████████] 1.000
-  helpfulness    [██████████████████░░] 0.900
-  conciseness    [████████████████████] 1.000
+# Or use in your code
+from agent_auto_designer import AgentAutoDesigner
+designer = AgentAutoDesigner()
+plan = designer.design_agent("Your requirement")
+print(plan.to_markdown())
 ```
 
 ---
@@ -119,78 +130,81 @@ Alignment Score: 0.965 (PASS ✅)
 
 ```
 I.QUEUE/
-├── core/
-│   ├── skill.py          # @skill decorator system
-│   ├── rule.py           # @rule constraint engine
-│   ├── pipeline.py       # Pipeline execution
-│   ├── alignment.py      # Alignment formula calculation
-│   └── agent.py          # Agent orchestrator
-├── llm/
-│   ├── openai_backend.py
-│   └── anthropic_backend.py
-├── memory.py             # Memory layer
-├── example_agent.py      # Complete example
-├── pyproject.toml        # Project configuration
-├── requirements.txt      # Dependencies
-└── README.md             # This file
+├── agent_auto_designer.py        # 4-component orchestrator
+├── requirement_analyzer.py       # Need analysis
+├── skill_recommender.py          # Skill recommendations
+├── plan_generator.py             # Design generation
+├── skill.py                      # @skill decorator
+├── rule.py                       # @rule constraint engine
+├── base.py                       # Base classes
+├── skills/                       # Pre-built skills library
+├── rules/                        # Rules library
+├── cartridges_template/          # YAML templates
+├── web_server.py                 # FastAPI backend
+├── web_ui/                       # Web interface
+├── agent_monitor.py              # Desktop monitor panel
+├── run.py                        # Launcher script
+├── quick_start.py                # CLI quick start
+├── pyproject.toml                # Project config
+└── requirements.txt              # Dependencies
 ```
 
 ---
 
-## Core API
+## Documentation
 
-### `@skill` — Define a Skill
-
-```python
-@skill(name="translate", tags=["language"], priority=7)
-def translate(text: str, target_lang: str = "en") -> str:
-    """Translate text to target language."""
-    return translated_text
-```
-
-### `@rule` — Define a Rule
-
-```python
-@rule(name="max_length", severity="warn", phase="post")
-def check_length(output: str) -> tuple[bool, str]:
-    ok = len(output) < 1000
-    return ok, "Output exceeds 1000 characters"
-```
-
-### `Pipeline` — Define Execution Order
-
-```python
-pipeline = Pipeline([
-    Phase("step1", fn1),
-    Phase("step2", fn2, condition=lambda ctx: ctx.get("step1") is not None),
-    Phase("step3", fn3),
-])
-```
-
-### `AlignmentFormula` — Quantify Alignment
-
-```python
-formula = AlignmentFormula(
-    dimensions=[
-        AlignmentDimension("safety",  weight=0.5, scorer=safety_scorer,  floor=0.8),
-        AlignmentDimension("quality", weight=0.5, scorer=quality_scorer, floor=0.6),
-    ],
-    threshold=0.70,
-)
-report = formula.evaluate(agent_output)
-print(report)  # Visualized score bars
-```
+- [📖 Startup Guide](./STARTUP_GUIDE.md) — How to start (3 methods)
+- [🛠️ Skills Guide](./SKILLS_GUIDE.md) — Write and use skills
+- [⚙️ AutoDesigner Guide](./AGENT_AUTODESIGNER_GUIDE.md) — Detailed system explanation
 
 ---
 
-## Roadmap
+## Features
 
-- [ ] Support LLM backends (OpenAI / Anthropic)
-- [ ] Auto-parse skill dependency graphs
-- [ ] Alignment score history tracking
-- [ ] YAML/JSON configuration export
-- [ ] Web UI for Pipeline visualization
-- [ ] Interactive tutorials
+✅ **Automatic Design** — Describe once, AI builds optimal config  
+✅ **Web UI** — Visual designer with real-time preview  
+✅ **Desktop Monitor** — Floating panel shows live execution  
+✅ **One-Click Deploy** — From requirement to running agent  
+✅ **Markdown Reports** — Review before approving  
+✅ **YAML Config** — Export for reproducibility  
+
+---
+
+## Technology Stack
+
+- **Python 3.10+** — Core language
+- **FastAPI** — Web backend API
+- **PyQt6** — Desktop monitoring
+- **YAML** — Configuration format
+- **HTML5 + CSS3 + JS** — Web frontend
+
+---
+
+## No Coding Required
+
+Design agents with simple English. System handles:
+- ✓ Analyzing your requirements
+- ✓ Selecting best skills
+- ✓ Configuring memory layer
+- ✓ Setting preferences and rules
+- ✓ Generating complete design
+- ✓ Deploying and monitoring
+
+---
+
+## Get Started Now
+
+```bash
+# From repository root
+cd I.QUEUE
+
+# Choose your method
+python run.py              # Interactive launcher
+python quick_start.py "your need"  # CLI direct
+python web_server.py       # Web UI only
+```
+
+Then describe what you need. AI does the rest.
 
 ---
 
