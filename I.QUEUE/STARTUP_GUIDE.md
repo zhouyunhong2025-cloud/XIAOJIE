@@ -1,155 +1,155 @@
-# 🚀 I.QUEUE 启动指南
+# Startup Guide
 
-## 三种启动方式
+## Three Ways to Start
 
-### 方式 1️⃣: 完整模式 (推荐)
+### Method 1️⃣: Complete Mode (Recommended)
 
-**Web 界面 + 桌面监控面板 + 一键启动**
+**Web UI + Desktop Monitor + One-Click Deploy**
 
 ```bash
 cd I.QUEUE
 python run.py
-# 选择: 1️⃣ 完整模式
+# Select: 1️⃣ Complete Mode
 ```
 
-**你会看到:**
-1. 🌐 Web 浏览器打开设计界面 (http://localhost:8000)
-2. 🖥️ 桌面悬浮监控面板
-   - 📋 实时日志显示
-   - 📊 执行统计
-   - ⚙️ 快速操作
+**What you'll see:**
+1. 🌐 Web browser opens designer (http://localhost:8000)
+2. 🖥️ Desktop floating monitor panel
+   - 📋 Real-time logs
+   - 📊 Execution stats
+   - ⚙️ Quick actions
 
-**工作流:**
+**Workflow:**
 ```
-输入需求
+Enter requirement
   ↓
-点击"智能分析"
+Click "Smart Analyze"
   ↓
-查看设计报告
+Review design report
   ↓
-点击"一键启动"
+Click "Deploy"
   ↓
-监控面板实时显示执行日志 ✨
+Monitor panel shows live logs ✨
 ```
 
 ---
 
-### 方式 2️⃣: 仅 Web 模式
+### Method 2️⃣: Web Only
 
-**只使用浏览器，不需要桌面应用**
+**Browser-based, no desktop apps needed**
 
 ```bash
 cd I.QUEUE
 python web_server.py
 ```
 
-**访问:**
+**Access:**
 - 🌐 Web UI: http://localhost:8000
-- 📚 API 文档: http://localhost:8000/docs
+- 📚 API Docs: http://localhost:8000/docs
 
 ---
 
-### 方式 3️⃣: 仅 CLI 模式
+### Method 3️⃣: CLI Only
 
-**命令行快速使用**
+**Command-line quick testing**
 
 ```bash
 cd I.QUEUE
-python quick_start.py "你的需求"
+python quick_start.py "your requirement"
 ```
 
-**示例:**
+**Example:**
 ```bash
-python quick_start.py "帮我总结今天的工作"
-# 自动生成: agent_plan_YYYYMMDD_HHMMSS.md + 配置文件
+python quick_start.py "summarize today's work"
+# Auto-generates: agent_plan_YYYYMMDD_HHMMSS.md + configs
 ```
 
 ---
 
-## 安装依赖
+## Install Dependencies
 
 ```bash
-# 标准安装 (包含所有功能)
+# Standard (all features)
 pip install -r requirements.txt
 
-# 最小安装 (仅 Web)
+# Minimal (Web only)
 pip install fastapi uvicorn requests
 
-# 完整安装 (包含桌面应用)
+# Full (with desktop app)
 pip install -r requirements.txt
 pip install PyQt6
 ```
 
 ---
 
-## 桌面监控面板详解
+## Desktop Monitor Panel
 
-### 功能面板
+### Features
 
-| 标签 | 功能 | 用途 |
-|-----|------|------|
-| 📋 实时日志 | 显示系统日志 | 了解执行过程 |
-| 📊 执行统计 | 性能指标 | 查看统计数据 |
-| ⚙️ 快速操作 | 常用操作按钮 | 控制系统 |
+| Tab | Function | Purpose |
+|-----|----------|---------|
+| 📋 Real-time Logs | System logs | Track execution |
+| 📊 Stats | Performance metrics | View statistics |
+| ⚙️ Quick Actions | Control buttons | Manage system |
 
-### 快速操作按钮
-
-```
-🌐 打开 Web 界面
-   → 打开设计器
-
-📂 打开输出文件夹  
-   → 查看生成的文件
-
-🔄 刷新状态
-   → 更新系统状态
-
-📋 导出日志
-   → 保存执行日志
-
-⚠️ 清空日志
-   → 清除日志文件
-```
-
-### 监控窗口位置
+### Quick Action Buttons
 
 ```
-屏幕右侧悬浮
-(500px 宽 × 700px 高)
+🌐 Open Web UI
+   → Open designer
 
-始终在最上层
+📂 Open Output Folder
+   → View generated files
+
+🔄 Refresh Status
+   → Update system status
+
+📋 Export Logs
+   → Save execution logs
+
+⚠️ Clear Logs
+   → Clear log files
+```
+
+### Monitor Window Layout
+
+```
+Floating on right side
+(500px wide × 700px tall)
+
+Always on top
 ━━━━━━━━━━━━━━━━━━━━
-│  🤖 I.QUEUE 监控    │
+│  🤖 I.QUEUE Monitor │
 │                    │
-│  状态: ✅ 在线     │
-│  [进度条]           │
+│  Status: ✅ Online │
+│  [Progress bar]    │
 │                    │
-│  📋 实时日志        │
-│  系统日志输出       │
+│  📋 Real-time Logs │
+│  System output     │
 │  ...               │
 │                    │
-│  [按钮组]          │
+│  [Button group]    │
 ━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---
 
-## 问题排查
+## Troubleshooting
 
-### Q: 无法连接到 http://localhost:8000
+### Q: Can't connect to http://localhost:8000
 
-**解决**:
+**Solution:**
 ```bash
-# 检查端口是否被占用
+# Check if port is in use
 lsof -i :8000
 
-# 如果被占用，改用其他端口
+# If occupied, use different port
 python -m uvicorn web_server:app --port 8001
 ```
 
-### Q: PyQt6 安装失败
+### Q: PyQt6 installation fails
 
-**解决**:
+**Solution:**
 ```bash
 # Ubuntu/Debian
 sudo apt-get install python3-pyqt6
@@ -157,145 +157,145 @@ sudo apt-get install python3-pyqt6
 # macOS
 brew install python-pyqt6
 
-# 或使用 pip
+# Or use pip
 pip install PyQt6 --upgrade
 ```
 
-### Q: API 连接异常
+### Q: API connection errors
 
-**解决**:
-1. 确保 Web 服务器正在运行
-2. 检查防火墙设置
-3. 查看日志调试
+**Solution:**
+1. Ensure web server is running
+2. Check firewall settings
+3. Review logs for debugging
 
-### Q: 监控面板无日志输出
+### Q: Monitor panel shows no logs
 
-**解决**:
-1. 检查 API 是否正常
-2. 在监控面板点击 "刷新状态"
-3. 重启应用
+**Solution:**
+1. Check if API is working
+2. Click "Refresh Status" in panel
+3. Restart application
 
 ---
 
-## 高级用法
+## Advanced Usage
 
-### 自定义端口
+### Custom Port
 
 ```bash
-# 启动 Web 服务器在端口 9000
+# Start on port 9000
 python -m uvicorn web_server:app --host 0.0.0.0 --port 9000
 ```
 
-### 远程访问
+### Remote Access
 
 ```bash
-# 允许其他计算机连接
+# Allow other computers to connect
 python -m uvicorn web_server:app --host 0.0.0.0 --port 8000
-# 其他计算机访问: http://your-ip:8000
+# Access from other machine: http://your-ip:8000
 ```
 
-### 后台运行
+### Run in Background
 
 ```bash
 # Linux/macOS
 nohup python web_server.py > server.log 2>&1 &
 
-# 使用 screen
+# Using screen
 screen -S i_queue
 python web_server.py
-# Ctrl+A, D 退出
+# Press Ctrl+A, D to exit
 
-# 使用 tmux
+# Using tmux
 tmux new-session -d -s i_queue
 tmux send-keys -t i_queue "python web_server.py" Enter
 ```
 
 ---
 
-## 快捷键和技巧
+## Keyboard Shortcuts
 
-### Web 界面
+### Web UI
 
-| 快捷键 | 功能 |
-|-------|------|
-| Ctrl+Enter | 提交需求分析 |
-| 拖拽 | 选择设计组件 |
+| Shortcut | Function |
+|----------|----------|
+| Ctrl+Enter | Submit requirement |
+| Drag-drop | Select components |
 
-### 监控面板
+### Monitor Panel
 
-| 快捷键 | 功能 |
-|-------|------|
-| Ctrl+C | 关闭应用 |
-| 按钮 | 快速操作 |
-
----
-
-## 性能建议
-
-### 系统要求
-- **最低**: Python 3.9+, 4GB RAM, 50MB 磁盘空间
-- **推荐**: Python 3.10+, 8GB RAM, 100MB 磁盘空间
-
-### 优化建议
-1. **关闭不用的标签页** 减少内存占用
-2. **定期导出日志** 清空实时日志
-3. **清理输出文件夹** (~mnt/user-data/outputs)
-4. **更新依赖** `pip install -r requirements.txt --upgrade`
+| Shortcut | Function |
+|----------|----------|
+| Ctrl+C | Close application |
+| Click | Quick actions |
 
 ---
 
-## 日志位置
+## Performance Tips
+
+### System Requirements
+- **Minimum**: Python 3.10+, 4GB RAM, 50MB disk
+- **Recommended**: Python 3.10+, 8GB RAM, 100MB disk
+
+### Optimization Tips
+1. **Close unused tabs** to reduce memory
+2. **Export logs regularly** to clear runtime logs
+3. **Clean output folder** (~mnt/user-data/outputs)
+4. **Update dependencies** `pip install -r requirements.txt --upgrade`
+
+---
+
+## Log Locations
 
 ```
-📂 生成的文件:
+📂 Generated files:
    /workspaces/XIAOJIE/I.QUEUE/mnt/user-data/outputs/
-   ├── agent_plans/          (设计方案 .md)
-   ├── agent_configs/        (配置文件 .yaml)
-   └── deployed_*            (已部署配置)
+   ├── agent_plans/          (Design plans .md)
+   ├── agent_configs/        (Config files .yaml)
+   └── deployed_*            (Deployed configs)
 
-📝 监控日志:
-   /tmp/i_queue_logs_*.txt   (手动导出)
+📝 Monitor logs:
+   /tmp/i_queue_logs_*.txt   (Manual export)
 ```
 
 ---
 
-## 获取帮助
+## Get Help
 
 ```bash
-# 查看 API 文档
+# View API documentation
 http://localhost:8000/docs
 
-# 阅读用户指南
+# Read user guide
 cat AGENT_AUTODESIGNER_GUIDE.md
 
-# 查看设计示例
+# Check design examples
 cat mnt/user-data/outputs/agent_plans/plan_1.md
 ```
 
 ---
 
-## 下一步
+## Next Steps
 
-✨ **现在就尝试吧！**
+✨ **Try it now!**
 
 ```bash
-# 1. 启动完整模式
+# 1. Start complete mode
 python run.py
 
-# 2. 选择: 1️⃣ 完整模式
+# 2. Select: 1️⃣ Complete Mode
 
-# 3. 在设计器中输入需求:
-#    "帮我总结今天的工作内容"
+# 3. In designer, enter requirement:
+#    "Summarize today's work"
 
-# 4. 点击 "智能分析"
+# 4. Click "Smart Analyze"
 
-# 5. 查看监控面板的实时日志
+# 5. Watch monitor panel's live logs
 
-# 6. 享受自动化的 Agent 设计体验！
+# 6. Enjoy automated agent design!
 ```
 
 ---
 
-**🎉 祝你使用愉快！**
+**🎉 Happy using!**
 
 更多信息: [README.md](README.md) | [AGENT_AUTODESIGNER_GUIDE.md](AGENT_AUTODESIGNER_GUIDE.md)
