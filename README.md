@@ -71,7 +71,23 @@ Think of building an agent like stacking Tetris blocks—each piece represents a
 
 **That's it.** Simple. Organized. Powerful.
 
-### Try the live demo: [I.QUEUE Interactive Playground](https://zhouyunhong2025-cloud.github.io/XIAOJIE/)
+### ⚡ Key Innovation: AgentAutoDesigner
+
+**Say what you want. We'll design the Agent for you.**
+
+```
+You: "Summarize my daily work"
+         ↓
+I.QUEUE: Automatically designs optimal Agent
+         • Selects best Skills
+         • Configures Memory
+         • Sets Alignment
+         • Generates complete plan
+         ↓
+You: Review & approve in 1 click
+```
+
+**[🎮 Try now: Web Designer](#web-designer)** | **[🎮 Live Interactive Demo](https://zhouyunhong2025-cloud.github.io/XIAOJIE/)**
 
 ---
 
@@ -151,28 +167,90 @@ print(f"Alignment score: {result.alignment_score}")
 
 ## Quick Start
 
-### Download the Project
+### 1️⃣ Download the Project
 
-**Option 1: Clone via Git** (recommended)
 ```bash
 git clone https://github.com/zhouyunhong2025-cloud/XIAOJIE.git
 cd XIAOJIE/I.QUEUE
 ```
 
-**Option 2: Download ZIP**
-- Go to [GitHub Releases](../../releases) and download the latest version
-- Extract the ZIP file and navigate to the `I.QUEUE` folder
-
-### Install Dependencies
+### 2️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
+pip install fastapi uvicorn  # For Web UI
 ```
 
-### Run the Example
+### 3️⃣ Choose Your Way
+
+#### 🎨 **Way 1: Web Designer (Recommended)** — No code needed!
 
 ```bash
-python example_agent.py
+python web_server.py
+```
+
+Then open **http://localhost:8000** in your browser.
+
+**What you see:**
+- Left: Drag-and-drop component library (Tetris-style)
+- Top-right: Natural language input ("Summarize my work")
+- Bottom-right: Auto-generated Agent design
+- One-click deploy ✨
+
+#### 💻 **Way 2: CLI** — Power users
+
+```bash
+python quick_start.py "Your requirement here"
+```
+
+Example:
+```bash
+python quick_start.py "帮我总结今天的工作"
+# Generates: agent_plan_YYYYMMDD_HHMMSS.md + config.yaml
+```
+
+#### 🐍 **Way 3: Python Code** — Custom designs
+
+```python
+from agent_auto_designer import AgentAutoDesigner
+
+designer = AgentAutoDesigner()
+plan = designer.design_agent("Summarize my daily work")
+print(plan.to_markdown())  # View complete plan
+```
+
+---
+
+## 🎮 Web Designer UI
+
+### Features:
+
+✅ **Zero-Coding Design** - Describe in plain language
+✅ **Intelligent Analysis** - Auto-selects optimal Skills & memory
+✅ **Visual Component Picker** - Drag-drop Tetris-style blocks
+✅ **Professional Reports** - Auto-generated design documents
+✅ **One-Click Export** - Markdown + YAML formats
+✅ **Live Deployment** - Start your Agent instantly
+
+### How It Works:
+
+```
+1. Type your requirement
+   "Summarize reports + track metrics"
+         ↓
+2. Click "智能分析" (Smart Analyze)
+         ↓
+3. Review auto-generated design
+   - Recommended Skills
+   - Memory configuration
+   - Alignment priorities
+   - Deployment plan
+         ↓
+4. Customize (optional)
+         ↓
+5. Click "🚀 一键启动" (One-Click Deploy)
+         ↓
+✅ Agent running!
 ```
 
 ### Try the Interactive Demo
