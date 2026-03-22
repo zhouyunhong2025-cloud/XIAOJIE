@@ -20,32 +20,56 @@
 **AI agents made simple. Stack capabilities like Tetris blocks.**
 
 ```
-┌──────────────────────────────────┐
-│  I.QUEUE Agent Container         │
-│                                  │
-│  ┌─────────────┐                │
-│  │ Memory Rod  │  "I remember"  │
-│  │   (📀)      │                │
-│  └─────────────┘                │
-│  ┌─────────────┐                │
-│  │ Skill Block │  "I learned"   │
-│  │   (💡)      │                │
-│  └─────────────┘                │
-│  ┌─────────────┐                │
-│  │ Alignment   │  "I understand"│
-│  │   (⚖️)      │                │
-│  └─────────────┘                │
-│                                  │
-└──────────────────────────────────┘
+AI Agent Assembly System
+
+    Memory      Skill      Alignment
+     Rod        Block      Formula
+      │          │           │
+      ▌          ▀▀          ▄▄
+      ▌      ╔═══╗      ╔═══════╗
+      ▌      ║ 💡 ║      ║  ⚖️   ║
+      ▌      ║━━━║      ║═══════║
+      ▌      ║ AI║      ║Values ║
+      ▌      ╚═══╝      ╚═══════╝
+  ╔═════╗                        
+  ║  📀  ║   Tetris Stacking System
+  ║━━━━━║   ✓ Smart Assembly
+  ║  01  ║   ✓ Ordered Pipeline  
+  ║  01  ║   ✓ Quantified Results
+  ╚═════╝   ✓ Control at Every Step
 ```
 
-### Three Core Concepts
+### Three Core Building Blocks (Stacked Together)
 
-| Block | Meaning | Description |
-|-------|---------|-------------|
-| **📀 Memory Rod** | "I remember our agreement" | Persistent knowledge across conversations |
-| **💡 Skill Block** | "My new skill learned" | Capabilities defined as Python functions |
-| **⚖️ Alignment** | "I love what you love" | Quantified values with weighted scoring |
+| Block Type | Visual | Meaning | Description |
+|-----------|--------|---------|-------------|
+| **Memory Rod** | `║` | "I remember our agreement" | Persistent knowledge layer spanning all stages |
+| **Skill Block** | `■` | "My new skill learned" | Capabilities defined as Python functions |
+| **Alignment** | `▲` | "I love what you love" | Quantified values with weighted formulas |
+
+Watch them stack and form your agent:
+
+```
+    Stage 1: Input Processing
+    ┌────────────┐
+    │ ■ ■ ■ ║    │  Skills + Memory
+    │ ───── ║    │
+    └────────────┘
+    
+    Stage 2: Reasoning
+    ┌────────────┐
+    │ ■ ║ ▲ ■    │  Mix with Alignment
+    │ ─ ║ ─ ─    │
+    └────────────┘
+    
+    Stage 3: Output
+    ┌────────────┐
+    │ ║ ■ ▲ ║    │  Final composition
+    │ ║ ─ ─ ║    │
+    └────────────┘
+    
+    Result: Complete, Aligned Agent ✓
+```
 
 **[→ View Full Interactive Showcase](https://zhouyunhong2025-cloud.github.io/XIAOJIE/showcase.html)**
 
