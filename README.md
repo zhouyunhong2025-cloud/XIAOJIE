@@ -15,6 +15,42 @@
 
 ---
 
+## 🎨 Product Showcase
+
+**AI agents made simple. Stack capabilities like Tetris blocks.**
+
+```
+┌──────────────────────────────────┐
+│  I.QUEUE Agent Container         │
+│                                  │
+│  ┌─────────────┐                │
+│  │ Memory Rod  │  "I remember"  │
+│  │   (📀)      │                │
+│  └─────────────┘                │
+│  ┌─────────────┐                │
+│  │ Skill Block │  "I learned"   │
+│  │   (💡)      │                │
+│  └─────────────┘                │
+│  ┌─────────────┐                │
+│  │ Alignment   │  "I understand"│
+│  │   (⚖️)      │                │
+│  └─────────────┘                │
+│                                  │
+└──────────────────────────────────┘
+```
+
+### Three Core Concepts
+
+| Block | Meaning | Description |
+|-------|---------|-------------|
+| **📀 Memory Rod** | "I remember our agreement" | Persistent knowledge across conversations |
+| **💡 Skill Block** | "My new skill learned" | Capabilities defined as Python functions |
+| **⚖️ Alignment** | "I love what you love" | Quantified values with weighted scoring |
+
+**[→ View Full Interactive Showcase](https://zhouyunhong2025-cloud.github.io/XIAOJIE/showcase.html)**
+
+---
+
 ## What is I.QUEUE?
 
 **Build AI agents with Python functions—not giant text prompts.**
@@ -238,50 +274,54 @@ MIT License — see [LICENSE](LICENSE)
 
 ---
 
-## 📁 项目结构
+## Project Structure
 
 ```
 XIAOJIE/
-├── I.QUEUE/                    ← 主项目目录
-│   ├── agentforge/
-│   │   ├── core/
-│   │   │   ├── agent.py       # Agent 主类
-│   │   │   ├── skill.py       # @skill 装饰器
-│   │   │   ├── rule.py        # @rule 约束引擎
-│   │   │   ├── pipeline.py    # Pipeline 执行管道
-│   │   │   └── alignment.py   # 对齐公式计算
-│   │   └── __init__.py
-│   ├── demo/
-│   │   └── example_agent.py   # 完整使用示例
-│   ├── pyproject.toml         # 项目配置
-│   ├── requirements.txt       # 依赖
-│   └── README.md              # 详细文档 →
-└── README.md                  # 本文件
+├── I.QUEUE/                        # Main package directory
+│   ├── core/
+│   │   ├── agent.py               # Agent orchestrator class
+│   │   ├── skill.py               # @skill decorator system
+│   │   ├── rule.py                # @rule constraint engine
+│   │   ├── pipeline.py            # Pipeline execution flow
+│   │   └── alignment.py           # Alignment formula calculation
+│   ├── llm/
+│   │   ├── openai_backend.py      # OpenAI integration
+│   │   └── anthropic_backend.py   # Anthropic integration
+│   ├── memory.py                  # Memory system
+│   ├── example_agent.py           # Complete usage example
+│   ├── pyproject.toml             # Project configuration
+│   ├── requirements.txt           # Dependencies
+│   └── README.md                  # Detailed API docs
+├── docs/                          # GitHub Pages deployment
+│   ├── index.html                 # Interactive Tetris demo
+│   └── showcase.html              # Product showcase page
+└── README.md                      # This file
 ```
 
 ---
 
-## 📖 核心 API
+## Core API
 
-### @skill — 定义技能
+### `@skill` — Define a Skill
 
 ```python
 @skill(name="translate", tags=["language"], priority=7)
 def translate_text(text: str, target_lang: str = "en") -> str:
-    """将文本翻译为目标语言。"""
+    """Translate text to target language."""
     return f"Translated: {text} to {target_lang}"
 ```
 
-### @rule — 定义规则
+### `@rule` — Define a Rule
 
 ```python
 @rule(name="max_length", severity="warn")
 def check_length(output: str) -> tuple[bool, str]:
     ok = len(output) < 1000
-    return ok, "输出超过 1000 个字符"
+    return ok, "Output exceeds 1000 characters"
 ```
 
-### Pipeline — 定义执行顺序
+### `Pipeline` — Define Execution Order
 
 ```python
 pipeline = Pipeline([
