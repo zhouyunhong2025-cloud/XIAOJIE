@@ -143,5 +143,5 @@ MIT License — Free for personal, commercial, and research use.
 
 ## 📸 Visual Overview
 
-![I.QUEUE Story](https://github.com/zhouyunhong2025-cloud/XIAOJIE/raw/I.QUEUE/docs/I.QUEUE-Story-Poster.png)
+![I.QUEUE Story](https://raw.githubusercontent.com/zhouyunhong2025-cloud/XIAOJIE/I.QUEUE/docs/I.QUEUE-Story-Poster.png)
 
