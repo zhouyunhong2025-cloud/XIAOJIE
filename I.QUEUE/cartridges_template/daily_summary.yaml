@@ -1,0 +1,52 @@
+# ============================================================================
+# I.QUEUE Daily Summary Agent
+# 每日总结助手 - 把工作内容浓缩成 7 条关键点
+# ============================================================================
+
+# 代理基本信息
+name: "Daily Summary Agent"
+description: "Compress your day's work into 7 key bullet points for quick review"
+version: "1.0.0"
+
+# 选择技能（预定义的能力）
+# 技能名称对应 I.QUEUE/skills/ 文件夹中的类
+skills:
+  - name: "daily_summarizer"
+    config:
+      summary_length: 7        # 保留 7 条要点
+
+# 应用规则（约束 Agent 的行为）
+rules:
+  - name: "content_safety"     # 内容安全检查
+  - name: "format_consistency" # 格式一致性
+
+# 价值对齐（Agent 的优先级）
+alignment:
+  clarity: 0.95          # 清晰度最高
+  conciseness: 0.98      # 简洁性最高
+  completeness: 0.85     # 完整性
+
+# LLM 配置（连接到 AI 模型）
+llm:
+  provider: "openai"     # 可选: openai, anthropic, local
+  model: "gpt-4"         # 模型名称
+  temperature: 0.3       # 低温度 = 更确定性的输出
+  max_tokens: 500
+
+# 输入/输出格式
+io:
+  input_format: "plain_text"
+  output_format: "markdown"
+
+# 使用说明
+# ============================================================================
+# 
+# 方式1：命令行使用
+# python run.py --cartridge cartridges/daily_summary.yaml --input "你今天的工作内容"
+#
+# 方式2：Python代码使用
+# from iqueue import load_cartridge
+# agent = load_cartridge('cartridges/daily_summary.yaml')
+# result = agent.run("工作日志内容")
+# 
+# ============================================================================

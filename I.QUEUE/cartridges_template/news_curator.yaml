@@ -1,0 +1,53 @@
+# ============================================================================
+# I.QUEUE News Curator Agent
+# 内容精选助手 - 从多个来源筛选出最有价值的信息
+# ============================================================================
+
+name: "News Curator Agent"
+description: "Curate and filter information to extract the most valuable content"
+version: "1.0.0"
+
+# 技能配置
+skills:
+  - name: "news_curator"
+    config:
+      categories: ["technology", "business", "science"]  # 关注的分类
+      relevance_threshold: 0.7                          # 相关性阈值（0-1）
+      max_items: 10                                     # 最多返回项数
+
+# 规则
+rules:
+  - name: "content_safety"
+  - name: "format_consistency"
+
+# 价值对齐
+alignment:
+  relevance: 0.95        # 与用户兴趣的相关性最高
+  timeliness: 0.90       # 及时性
+  uniqueness: 0.85       # 新颖性
+
+# LLM 配置
+llm:
+  provider: "openai"
+  model: "gpt-4"
+  temperature: 0.5      # 中等温度，平衡创意和确定性
+  max_tokens: 1000
+
+# 输入/输出
+io:
+  input_format: "text_list"  # 可以是多行文本或列表
+  output_format: "markdown"
+
+# 使用说明
+# ============================================================================
+#
+# 用例：每日新闻精选
+# python run.py --cartridge cartridges/news_curator.yaml \
+#   --input "今天的新闻列表.txt"
+#
+# 预期输出：
+# ✅ 技术要闻 (5 条精选)
+# ✅ 商业动态 (3 条精选)
+# ✅ 科学突破 (2 条精选)
+#
+# ============================================================================

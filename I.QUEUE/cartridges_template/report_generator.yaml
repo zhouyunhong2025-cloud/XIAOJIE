@@ -1,0 +1,79 @@
+# ============================================================================
+# I.QUEUE Report Generator Agent
+# 报告生成助手 - 用结构化数据自动生成专业日报/周报/月报
+# ============================================================================
+
+name: "Report Generator Agent"
+description: "Generate professional daily/weekly/monthly reports from work data"
+version: "1.0.0"
+
+# 技能配置
+skills:
+  - name: "report_generator"
+    config:
+      report_type: "daily"          # 报告类型: daily, weekly, monthly
+      include_metrics: true         # 包含数据指标
+      include_next_steps: true      # 包含后续步骤
+
+# 规则
+rules:
+  - name: "content_safety"
+  - name: "format_consistency"
+
+# 价值对齐
+alignment:
+  professionalism: 0.98  # 专业性最高
+  clarity: 0.95          # 清晰度
+  completeness: 0.90     # 完整性
+
+# LLM 配置
+llm:
+  provider: "openai"
+  model: "gpt-4"
+  temperature: 0.4      # 较低温度，确保专业性
+  max_tokens: 1500
+
+# 输入/输出
+io:
+  input_format: "structured_text"
+  output_format: "markdown"
+
+# 使用说明
+# ============================================================================
+#
+# 输入格式（支持以下结构）：
+# 
+# ✓ 完成了 API 接口开发
+# ✓ 修复了 3 个 bug
+# ✗ 与设计团队沟通延迟
+# → 完成数据库迁移
+# → 进行性能优化
+#
+# 运行命令：
+# python run.py --cartridge cartridges/report_generator.yaml \
+#   --input "work_log.txt" --report-type daily
+#
+# 输出示例：
+# ==================================================
+# 📋 Daily Report
+# 📅 2026-03-22
+# ==================================================
+# 
+# 📌 Executive Summary
+#   Very productive period with 2 achievements
+#
+# ✅ Key Achievements
+#   • 完成了 API 接口开发
+#   • 修复了 3 个 bug
+#
+# → Next Steps
+#   • 完成数据库迁移
+#   • 进行性能优化
+#
+# 📊 Key Metrics
+#   • Achievements: 2
+#   • Completion Rate: 100%
+#
+# ==================================================
+#
+# ============================================================================
