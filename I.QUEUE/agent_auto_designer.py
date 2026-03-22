@@ -180,7 +180,7 @@ class AgentAutoDesigner:
         for key, value in memory.items():
             if key != "enabled":
                 if isinstance(value, bool):
-                    output.append(f"  • {key}: {'✓ 启用' if value else '✗ 禁用'}")
+                    output.append(f"  • {key}: {'✓ Enabled' if value else '✗ Disabled'}")
                 else:
                     output.append(f"  • {key}: {value}")
         return "\n".join(output) if output else "  (使用默认配置)"

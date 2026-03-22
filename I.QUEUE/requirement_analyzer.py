@@ -212,9 +212,9 @@ class RequirementAnalyzer:
         
         if primary_type == "summary":
             recommendations.extend([
-                "建议每天固定时间Run，形成工作习惯",
-                "可以配合日历使用，按周/月生成汇总",
-                "保存摘要历史，方便对比和回顾"
+                "Recommended to run daily at fixed times，形成工作习惯",
+                "Can be used with calendar，Generate summaries by week/month",
+                "Save summary history，Easy to compare and review"
             ])
         elif primary_type == "curation":
             recommendations.extend([

@@ -125,7 +125,7 @@ class AgentDesignPlan:
             
             for key, value in self.memory_config.items():
                 if isinstance(value, bool):
-                    output.append(f"- **{key}**: {'✓ 启用' if value else '✗ 禁用'}")
+                    output.append(f"- **{key}**: {'✓ Enabled' if value else '✗ Disabled'}")
                 else:
                     output.append(f"- **{key}**: {value}")
             
@@ -309,7 +309,7 @@ class PlanGenerator:
             ]
         
         elif analysis.primary_type == "curation":
-            alternatives["内容来源"] = [
+            alternatives["内容Source"] = [
                 "仅本地数据",
                 "互联网新闻源",
                 "社交媒体",

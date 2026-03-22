@@ -282,7 +282,7 @@ class SkillRecommender:
             
             output.append(f"{idx}. {emoji} {rec.name}")
             output.append(f"   {rec.description}")
-            output.append(f"   来源: {rec.source.value} | Priority: P{rec.priority} | Confidence: {rec.confidence:.0%}")
+            output.append(f"   Source: {rec.source.value} | Priority: P{rec.priority} | Confidence: {rec.confidence:.0%}")
             
             if rec.url:
                 output.append(f"   🔗 {rec.url}")
