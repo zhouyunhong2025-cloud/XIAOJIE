@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 I.QUEUE 智能 Agent 设计器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧：俄罗斯方块容器 -->
+        <div class="left-panel">
+            <div class="panel-header">
+                <h2>🎲 方块组件库</h2>
+                <span class="subtitle">拖拽组件到设计区域</span>
+            </div>
+            
+            <div class="tetris-container">
+                <!-- 四层设计系统的组件 -->
+                <div class="component-section">
+                    <h3>技能 Skills</h3>
+                    <div class="components">
+                        <div class="block skill-block" draggable="true" data-type="skill">
+                            <div class="block-icon">⚡</div>
+                            <div class="block-label">Task</div>
+                        </div>
+                        <div class="block skill-block" draggable="true" data-type="skill">
+                            <div class="block-icon">🔍</div>
+                            <div class="block-label">Search</div>
+                        </div>
+                        <div class="block skill-block" draggable="true" data-type="skill">
+                            <div class="block-icon">📊</div>
+                            <div class="block-label">Data</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h3>记忆 Memory</h3>
+                    <div class="components">
+                        <div class="block memory-block" draggable="true" data-type="memory">
+                            <div class="block-icon">🧠</div>
+                            <div class="block-label">Retain</div>
+                        </div>
+                        <div class="block memory-block" draggable="true" data-type="memory">
+                            <div class="block-icon">📚</div>
+                            <div class="block-label">Learn</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h3>分层 Hierarchy</h3>
+                    <div class="components">
+                        <div class="block hierarchy-block" draggable="true" data-type="hierarchy">
+                            <div class="block-icon">📈</div>
+                            <div class="block-label">Level</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h3>规则 Rules</h3>
+                    <div class="components">
+                        <div class="block rule-block" draggable="true" data-type="rule">
+                            <div class="block-icon">🛡️</div>
+                            <div class="block-label">Safety</div>
+                        </div>
+                        <div class="block rule-block" draggable="true" data-type="rule">
+                            <div class="block-icon">✓</div>
+                            <div class="block-label">Format</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 设计画布 -->
+            <div class="design-canvas">
+                <h3>🎨 设计画布</h3>
+                <div id="canvas" class="canvas-area">
+                    <div class="canvas-placeholder">拖拽组件到这里</div>
+                </div>
+                <div class="canvas-stats">
+                    选中: <span id="selected-count">0</span> 个组件
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧上部：输入需求 -->
+        <div class="right-top-panel">
+            <div class="panel-header">
+                <h2>📝 输入需求</h2>
+                <span class="subtitle">用自然语言描述你想要什么</span>
+            </div>
+
+            <div class="input-section">
+                <textarea 
+                    id="requirement-input" 
+                    class="requirement-textarea" 
+                    placeholder="例如：帮我总结今天的工作内容，需要生成日报，包含关键指标分析..."
+                ></textarea>
+                
+                <div class="input-actions">
+                    <button id="analyze-btn" class="btn btn-primary">
+                        <span class="btn-icon">📊</span>
+                        <span class="btn-text">智能分析</span>
+                    </button>
+                    <button id="clear-btn" class="btn btn-secondary">
+                        <span class="btn-icon">🗑️</span>
+                        <span class="btn-text">清空</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 分析结果摘要 -->
+            <div class="analysis-summary" id="analysis-summary" style="display: none;">
+                <div class="summary-item">
+                    <span class="summary-label">需求类型:</span>
+                    <span class="summary-value" id="type-result">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">信心度:</span>
+                    <span class="summary-value" id="confidence-result">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">关键词:</span>
+                    <span class="summary-value" id="keywords-result">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧下部：设计报告 -->
+        <div class="right-bottom-panel">
+            <div class="panel-header">
+                <h2>📋 设计报告</h2>
+                <span class="subtitle">自动生成的 Agent 配置方案</span>
+            </div>
+
+            <div id="report-container" class="report-container">
+                <div class="report-placeholder">
+                    <div class="placeholder-icon">🤖</div>
+                    <div class="placeholder-text">点击"智能分析"生成方案</div>
+                </div>
+            </div>
+
+            <div class="report-actions">
+                <button id="export-md-btn" class="btn btn-outline" disabled>
+                    <span class="btn-icon">📄</span>
+                    <span class="btn-text">导出 Markdown</span>
+                </button>
+                <button id="export-yaml-btn" class="btn btn-outline" disabled>
+                    <span class="btn-icon">⚙️</span>
+                    <span class="btn-text">导出配置</span>
+                </button>
+                <button id="deploy-btn" class="btn btn-success" disabled>
+                    <span class="btn-icon">🚀</span>
+                    <span class="btn-text">一键启动</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 进度指示器 -->
+    <div id="loading-indicator" class="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <div class="loading-text">正在智能分析...</div>
+    </div>
+
+    <!-- 底部状态栏 -->
+    <div class="status-bar">
+        <div class="status-item">
+            <span class="status-label">状态:</span>
+            <span class="status-value" id="status-text">就绪</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">版本:</span>
+            <span class="status-value">v2.0 (Web)</span>
+        </div>
+    </div>
+
+    <script src="tetris_visualizer.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
