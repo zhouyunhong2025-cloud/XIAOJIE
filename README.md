@@ -16,6 +16,18 @@
 
 ---
 
+## Visual Overview
+
+### How It Works
+
+![I.QUEUE Core Concept](./docs/ScreenShot_2026-03-22_153838_603.png)
+
+### Pre-Built Cartridges
+
+![I.QUEUE Cartridges](./docs/ScreenShot_2026-03-22_153857_163.png)
+
+---
+
 ## What is I.QUEUE?
 
 Your AI picks its own:
@@ -25,6 +37,22 @@ Your AI picks its own:
 - **Rules** — What not to break
 
 *You describe once. It configures itself.*
+
+---
+
+## Core Building Blocks
+
+| Element | Visual | Meaning | Purpose |
+|---------|--------|---------|---------|
+| **Memory** | 📦 | "I remember our agreement" | Persistent knowledge layer spanning all stages |
+| **Skills** | 🛠️ | "My new skill learned" | Capabilities defined as Python functions |
+| **Preferences** | ⚙️ | "I prefer your way" | Behavioral parameters and priorities |
+| **Rules** | ✓ | "What I must/must not do" | Constraints and safety boundaries |
+
+These four elements combine to form your Agent pipeline:
+- **Input Processing:** Skills + Memory → Context Preparation
+- **Reasoning:** Mix with Preferences & Rules → Decision Making
+- **Output:** Final Composition → Agent Response
 
 ---
 
