@@ -280,18 +280,18 @@ async def health_check():
     }
 
 
-# ===== 主函数 =====
+# ===== Main Function =====
 
 if __name__ == "__main__":
     import uvicorn
     
     print("\n" + "="*70)
-    print("🤖 I.QUEUE Web 服务器启动")
+    print("🤖 I.QUEUE Web Server Started")
     print("="*70)
     print("\n🌐 Web UI: http://localhost:8000")
     print("📡 API: http://localhost:8000/api")
-    print("📚 文档: http://localhost:8000/docs")
-    print("\n按 Ctrl+C 停止服务器\n")
+    print("📚 Documentation: http://localhost:8000/docs")
+    print("\nPress Ctrl+C to stop server\n")
     
     uvicorn.run(
         app,

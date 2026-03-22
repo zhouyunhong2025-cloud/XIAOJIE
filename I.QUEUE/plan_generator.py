@@ -34,8 +34,8 @@ class AgentDesignPlan:
         output.append(f"**方案ID**: `plan_{datetime.now().strftime('%Y%m%d_%H%M%S')}`")
         output.append("")
         
-        # 用户需求
-        output.append("## 📋 用户需求")
+        # Requirement
+        output.append("## 📋 Requirement")
         output.append("━━━━━━━━━━━━━━━━━━━")
         output.append(f"> {self.requirement}")
         output.append("")
@@ -174,7 +174,7 @@ class AgentDesignPlan:
         output.append("")
         output.append("1. **检查**: 仔细阅读本方案，确认所有配置符合预期")
         output.append("2. **修改**: 如需要，可以修改任何配置项")
-        output.append("3. **确认**: 确认无误后，按下**一键启动**按钮")
+        output.append("3. **确认**: 确认无误后，按下**One-Click Deploy**按钮")
         output.append("4. **运行**: Agent 会自动启动并开始处理")
         output.append("5. **监测**: 查看实时输出日志，确保一切正常")
         output.append("")

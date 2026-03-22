@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-🤖 I.QUEUE 完整启动器
-同时启动 Web 服务器 + 桌面监控面板
+🤖 I.QUEUE Complete Launcher
+Starts Web Server + Desktop Monitoring Panel together
 """
 
 import sys
@@ -12,115 +12,115 @@ from pathlib import Path
 
 
 def main():
-    """启动主函数"""
+    """Main launch function"""
     
     print("\n" + "="*70)
-    print("🤖 I.QUEUE Agent 设计 & 执行系统")
+    print("🤖 I.QUEUE Agent Design & Execution System")
     print("="*70)
-    print("\n启动方式选择:\n")
+    print("\nSelect startup mode:\n")
     
-    print("1️⃣  完整模式 (Web + 桌面监控)")
-    print("   → 在浏览器设计 Agent")
-    print("   → 在桌面面板监控执行")
+    print("1️⃣  Full Mode (Web + Desktop Monitor)")
+    print("   → Design Agent in browser")
+    print("   → Monitor execution in desktop panel")
     print()
     
-    print("2️⃣  仅 Web 模式 (浏览器)")
-    print("   → 访问 http://localhost:8000")
+    print("2️⃣  Web Only Mode (Browser)")
+    print("   → Access http://localhost:8000")
     print()
     
-    print("3️⃣  仅 CLI 模式 (命令行)")
-    print("   → python quick_start.py '你的需求'")
+    print("3️⃣  CLI Only Mode (Command Line)")
+    print("   → python quick_start.py 'your requirement'")
     print()
     
-    choice = input("请选择 (1/2/3): ").strip()
+    choice = input("Choose (1/2/3): ").strip()
     
     if choice == "1":
         start_full_mode()
     elif choice == "2":
         start_web_only()
     elif choice == "3":
-        print("\n✅ 使用 CLI 模式:")
+        print("\n✅ Using CLI Mode:")
         print("   cd /path/to/I.QUEUE")
-        print("   python quick_start.py '你的需求'\n")
+        print("   python quick_start.py 'your requirement'\n")
     else:
-        print("❌ 无效选择")
+        print("❌ Invalid choice")
         sys.exit(1)
 
 
 def start_full_mode():
-    """完整模式：Web + 监控面板"""
+    """Full mode: Web + Monitor Panel"""
     
     print("\n" + "="*70)
-    print("启动: 完整模式 (Web + 桌面监控)")
+    print("Startup: Full Mode (Web + Desktop Monitor)")
     print("="*70 + "\n")
     
-    # 获取项目路径
+    # Get project path
     project_dir = Path(__file__).parent
     os.chdir(project_dir)
     
-    # 检查依赖
-    print("📦 检查依赖...")
+    # Check dependencies
+    print("📦 Checking dependencies...")
     try:
         import fastapi
         import uvicorn
         print("  ✓ FastAPI/Uvicorn")
     except ImportError:
-        print("  ⚠️  缺少 FastAPI")
-        print("  运行: pip install fastapi uvicorn")
+        print("  ⚠️  Missing FastAPI")
+        print("  Run: pip install fastapi uvicorn")
         sys.exit(1)
     
     try:
         from PyQt6.QtWidgets import QApplication
         print("  ✓ PyQt6")
     except ImportError:
-        print("  ⚠️  缺少 PyQt6")
-        print("  运行: pip install PyQt6")
+        print("  ⚠️  Missing PyQt6")
+        print("  Run: pip install PyQt6")
         sys.exit(1)
     
     print("\n")
     
-    # 启动 Web 服务器（后台）
-    print("🌐 启动 Web 服务器...")
+    # Start Web Server (background)
+    print("🌐 Starting Web Server...")
     web_process = subprocess.Popen(
         [sys.executable, "web_server.py"],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL
     )
-    print("   ✓ Web 服务器启动中...")
+    print("   ✓ Web server starting...")
     
-    # 等待 Web 服务器准备好
+    # Wait for Web Server to be ready
     time.sleep(2)
     
-    print("   ✓ Web 服务器运行在 http://localhost:8000")
+    print("   ✓ Web server running at http://localhost:8000")
     print()
     
-    # 启动桌面监控面板
-    print("🖥️  启动桌面监控面板...")
+    # Start Desktop Monitor
+    print("🖥️  Starting Desktop Monitor Panel...")
     try:
         subprocess.run([sys.executable, "agent_monitor.py"])
     except KeyboardInterrupt:
-        print("\n\n正在关闭...")
+        print("\n\nShutting down...")
         web_process.terminate()
         web_process.wait(timeout=5)
     except Exception as e:
-        print(f"❌ 启动监控面板失败: {e}")
+        print(f"❌ Failed to start monitor panel: {e}")
         web_process.terminate()
         sys.exit(1)
     
-    # 清理
-    print("\n✅ I.QUEUE 已关闭")
+    # Cleanup
+    print("\n✅ I.QUEUE Closed")
 
 
 def start_web_only():
-    """仅 Web 模式"""
+    """Web only mode"""
     
     print("\n" + "="*70)
-    print("启动: Web 模式")
+    print("Startup: Web Mode")
     print("="*70)
-    print("\n🌐 Web 服务器启动中...")
-    print("   🔗 访问: http://localhost:8000")
-    print("   📖 文档: http://localhost:8000/docs")
-    print("\n按 Ctrl+C 停止服务器\n")
+    print("\n🌐 Web Server starting...")
+    print("   🔗 Access: http://localhost:8000")
+    print("   📖 Docs: http://localhost:8000/docs")
+    print("\nPress Ctrl+C to stop server\n")
     
     project_dir = Path(__file__).parent
     os.chdir(project_dir)
@@ -128,12 +128,12 @@ def start_web_only():
     try:
         subprocess.run([sys.executable, "web_server.py"])
     except KeyboardInterrupt:
-        print("\n✅ Web 服务器已关闭")
+        print("\n✅ Web server closed")
 
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n👋 再见!")
+        print("\n\n👋 Goodbye!")
         sys.exit(0)

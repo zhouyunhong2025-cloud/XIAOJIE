@@ -15,7 +15,7 @@ class AgentAutoDesigner:
     
     工作流程:
     1. 用户提供需求 → 2. 分析需求 → 3. 推荐技能 → 4. 生成方案文档
-    5. 用户审核 → 6. 用户修改 → 7. 确认执行 → 8. 自动启动 Agent
+    5. 用户审核 → 6. 用户修改 → 7. Confirm execution → 8. 自动启动 Agent
     """
     
     def __init__(self):
@@ -59,45 +59,45 @@ class AgentAutoDesigner:
         这是 I.QUEUE 的核心创新！
         
         Args:
-            user_requirement: 用户的自然语言需求
-                例如: "帮我总结今天的工作"
-                     "精选科技和商业新闻"
-                     "生成我的周报"
+            user_requirement: User's natural language requirement
+                Example: "Summarize my daily work"
+                         "Curate tech and business news"
+                         "Generate my weekly report"
             
         Returns:
-            完整可执行的 Agent 设计方案
+            Complete executable Agent design plan
         """
         
-        print("\n🚀 开始 Agent 智能设计...")
+        print("\n🚀 Starting Agent intelligent design...")
         print("━" * 50)
         
-        # 步骤 1: 分析需求
-        print("\n📊 第 1 步: 深度分析需求...")
+        # Step 1: Analyze requirement
+        print("\n📊 Step 1: Deep requirement analysis...")
         analysis = self._analyze_requirement(user_requirement)
         print(self.requirement_analyzer.explain_analysis(analysis))
         
-        # 步骤 2: 推荐技能
-        print("\n✨ 第 2 步: 推荐最优技能...")
+        # Step 2: Recommend skills
+        print("\n✨ Step 2: Recommend optimal  skills...")
         skills = self._recommend_skills(analysis)
         print(self.skill_recommender.format_recommendations(skills))
         
-        # 步骤 3: 设置规则
-        print("\n🛡️  第 3 步: 配置应用规则...")
+        # Step 3: Set up rules
+        print("\n🛡️  Step 3: Configure rules...")
         rules = self._setup_rules(analysis.primary_type)
         print(self._format_rules(rules))
         
-        # 步骤 4: 设计记忆
-        print("\n🧠 第 4 步: 配置记忆系统...")
+        # Step 4: Design memory
+        print("\n🧠 Step 4: Configure memory system...")
         memory_config = self._design_memory(analysis)
         print(self._format_memory(memory_config))
         
-        # 步骤 5: 设置对齐
-        print("\n🎯 第 5 步: 设置能力对齐...")
+        # Step 5: Set up alignment
+        print("\n🎯 Step 5: Set capability alignment...")
         alignment = self._compute_alignment(analysis)
         print(self._format_alignment(alignment))
         
-        # 步骤 6: 生成设计文档
-        print("\n📋 第 6 步: 生成设计文档...")
+        # Step 6: Generate design document
+        print("\n📋 Step 6: Generate design document...")
         plan = self.plan_generator.generate_plan(
             requirement=user_requirement,
             analysis=analysis,
@@ -107,17 +107,17 @@ class AgentAutoDesigner:
             alignment=alignment
         )
         
-        print("\n✅ 设计完成！")
+        print("\n✅ Design complete!")
         print("━" * 50)
         
         return plan
     
     def _analyze_requirement(self, requirement: str) -> RequirementAnalysis:
-        """分析用户需求"""
+        """Analyze user requirement"""
         return self.requirement_analyzer.analyze(requirement)
     
     def _recommend_skills(self, analysis: RequirementAnalysis) -> list:
-        """推荐技能"""
+        """Recommend skills"""
         skills = self.skill_recommender.recommend_skills(
             requirement_type=analysis.primary_type,
             secondary_types=analysis.secondary_types,
@@ -217,7 +217,7 @@ class AgentAutoDesigner:
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(plan.to_markdown())
         
-        print(f"✅ 方案已保存: {filepath}")
+        print(f"✅ Plan saved: {filepath}")
         return filepath
     
     def export_plan_yaml(self, plan: AgentDesignPlan, filename: str) -> str:
@@ -242,7 +242,7 @@ class AgentAutoDesigner:
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(plan.to_yaml_config())
         
-        print(f"✅ 配置已保存: {filepath}")
+        print(f"✅ Config saved: {filepath}")
         return filepath
     
     def show_approval_interface(self, plan: AgentDesignPlan) -> bool:
@@ -251,24 +251,24 @@ class AgentAutoDesigner:
         用户可以：
         1. 查看完整的设计方案
         2. 修改任何配置
-        3. 确认执行或取消
+        3. Confirm execution或Cancel
         
         Args:
             plan: 设计方案
             
         Returns:
-            用户是否确认执行
+            用户是否Confirm execution
         """
         print("\n" + "=" * 60)
-        print("📋 请审核 Agent 设计方案")
+        print("📋 Please review the Agent design plan")
         print("=" * 60)
-        print("\n完整方案:\n")
+        print("\nComplete plan:\n")
         print(plan.to_markdown())
         print("\n" + "=" * 60)
-        print("下一步选项:")
-        print("  1. ✅ 确认执行 (一键启动)")
-        print("  2. 📝 修改配置")
-        print("  3. ❌ 取消")
+        print("Next steps:")
+        print("  1. ✅ Confirm execution (One-Click Deploy)")
+        print("  2. 📝 Edit configuration")
+        print("  3. ❌ Cancel")
         print("=" * 60)
         
         # 在实际应用中，这里会呈现交互式界面
@@ -289,7 +289,7 @@ if __name__ == "__main__":
     
     for req in requirements:
         print(f"\n\n{'='*60}")
-        print(f"用户需求: {req}")
+        print(f"Requirement: {req}")
         print(f"{'='*60}")
         
         # 设计 Agent
