@@ -16,15 +16,9 @@
 
 ---
 
-## Visual Overview
+## Visual Story
 
-### How It Works
-
-![I.QUEUE Core Concept](./docs/ScreenShot_2026-03-22_153838_603.png)
-
-### Pre-Built Cartridges
-
-![I.QUEUE Cartridges](./docs/ScreenShot_2026-03-22_153857_163.png)
+![I.QUEUE - Your AI Guardian's Story](./docs/I.QUEUE-Story-Poster.png)
 
 ---
 
