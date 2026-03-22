@@ -2,102 +2,143 @@
 
 <div align="center">
 
-![I.QUEUE Tetris Demo](https://img.shields.io/badge/Demo-Live%20Preview-3498db?style=for-the-badge&logo=javascript)  
-[![Python](https://img.shields.io/badge/Python-3.9+-2ecc71?style=flat-square&logo=python)](https://python.org)
+**Your AI Guardian**
+
+[![Python](https://img.shields.io/badge/Python-3.10+-2ecc71?style=flat-square&logo=python)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-3498db?style=flat-square)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Alpha-e74c3c?style=flat-square)]()
+[![Status](https://img.shields.io/badge/Status-v0.1.0-e74c3c?style=flat-square)]()
 
-**Intelligence. Order. A gift for you and your AI agent.**
+**Download → Click → Done**
 
-[🎮 Live Demo](#demo) — [📖 Documentation](#documentation) — [🚀 Quick Start](#quick-start) — [💬 Issues](../../issues)
+[🚀 Quick Start](#quick-start) — [📖 Docs](#documentation) — [💬 Guide](#how-it-works)
 
 </div>
 
 ---
 
-## 🎨 Product Showcase
-
-**AI agents made simple. Stack capabilities like Tetris blocks.**
-
-![I.QUEUE Tetris Game Demo](./docs/tetris-demo.png)
-
-### Brand Identity
-
-![I.QUEUE Logo](./docs/i-queue-logo.png)
-
-### Three Core Building Blocks (Stacked Together)
-
-| Block Type | Visual | Meaning | Description |
-|-----------|--------|---------|-------------|
-| **Memory Rod** | `║` | "I remember our agreement" | Persistent knowledge layer spanning all stages |
-| **Skill Block** | `■` | "My new skill learned" | Capabilities defined as Python functions |
-| **Alignment** | `▲` | "I love what you love" | Quantified values with weighted formulas |
-
-Watch them combine to form your agent pipeline in three stages:
-
-| Stage | Key Concepts | Result |
-|-------|-------------|--------|
-| **Input Processing** | Skills + Memory | Context Preparation |
-| **Reasoning** | Mix with Alignment | Decision Making |
-| **Output** | Final Composition | Agent Response |
-
-**All working together in perfect order.** ✓
-
-**[→ View Full Interactive Showcase](https://zhouyunhong2025-cloud.github.io/XIAOJIE/showcase.html)**
-
----
-
 ## What is I.QUEUE?
 
-**Build AI agents with Python functions—not giant text prompts.**
+Your AI picks its own:
+- **Memory** — How to remember
+- **Skills** — What to do
+- **Preferences** — How to behave
+- **Rules** — What not to break
 
-Traditional AI agent development means maintaining mountains of configuration:
-
-```
-system_prompt.txt      (500 lines)
-skills_description.md  (200 lines)
-rules.txt              (100 lines)
-alignment_guide.md     (300 lines)
-… it never ends
-```
-
-**I.QUEUE** transforms this chaos into clean, executable Python code.
+*You describe once. It configures itself.*
 
 ---
 
-## The Concept
+## Quick Start
 
-Think of building an agent like stacking Tetris blocks—each piece represents a capability (skill, rule, memory, alignment). Drop blocks in, watch them settle, and your agent takes shape.
+```bash
+# 1. Install
+pip install -r requirements.txt
 
-**That's it.** Simple. Organized. Powerful.
+# 2. Run
+python run.py
 
-### ⚡ Key Innovation: AgentAutoDesigner
+# 3. Choose Mode
+#  1️⃣  Full (Web UI + Desktop Monitor)
+#  2️⃣  Web Only
+#  3️⃣  CLI Guide
 
-**Say what you want. We'll design the Agent for you.**
-
-```
-You: "Summarize my daily work"
-         ↓
-I.QUEUE: Automatically designs optimal Agent
-         • Selects best Skills
-         • Configures Memory
-         • Sets Alignment
-         • Generates complete plan
-         ↓
-You: Review & approve in 1 click
+# 4. Tell it what you need
+# It builds itself. Done.
 ```
 
-**[🎮 Try now: Web Designer](#web-designer)** | **[🎮 Live Interactive Demo](https://zhouyunhong2025-cloud.github.io/XIAOJIE/)**
+---
+
+## Three Ways to Start
+
+| Method | Command | Best For |
+|--------|---------|----------|
+| **One Click** | `python run.py` | Full experience |
+| **Web Designer** | `python run.py` → Mode 2 | Visual preference |
+| **CLI** | `python quick_start.py "your need"` | Quick testing |
 
 ---
 
 ## How It Works
 
-Instead of paragraphs of text, define everything as code:
+```
+Your Need
+   ↓
+AI Analysis
+   ↓
+Auto Configure:
+ • Memory
+ • Skills
+ • Preferences
+ • Rules
+   ↓
+Instant Deploy
+   ↓
+Desktop Monitor Shows Execution
+```
 
-```python
-# A skill = a typed Python function with metadata
-@skill(name="understand_intent", priority=10)
+No code. No config files. No headaches.
+
+Just you and your AI.
+
+---
+
+## Features
+
+✅ **Automatic Agent Design** — Describe once, get perfect config  
+✅ **Web UI** — Visual designer with real-time preview  
+✅ **Desktop Monitor** — Floating panel for real-time execution  
+✅ **One-Click Deploy** — From requirement to live agent  
+✅ **Skill Library** — Pre-built capabilities ready to use  
+✅ **Export** — Save as Markdown or YAML  
+
+---
+
+## Built-in Skills
+
+- **DailySummarizer** — Auto summarize daily work
+- **NewsCurator** — Collect and organize news
+- **ReportGenerator** — Create professional reports
+
+*Build custom skills in Python—just write functions.*
+
+---
+
+## Technology Stack
+
+- **Backend:** FastAPI + Python 3.10+
+- **Frontend:** HTML5 + CSS3 + Vanilla JavaScript
+- **Desktop:** PyQt6
+- **Config:** YAML
+
+---
+
+## Documentation
+
+- [📖 Quick Start Guide](./I.QUEUE/STARTUP_GUIDE.md)
+- [🛠️ Skills Guide](./I.QUEUE/SKILLS_GUIDE.md)
+- [⚙️ AutoDesigner Guide](./I.QUEUE/AGENT_AUTODESIGNER_GUIDE.md)
+
+---
+
+## What's Next?
+
+```
+1. Download
+2. Click
+3. Your AI Guardian Appears
+```
+
+No waiting. No code. No stress.
+
+Just intelligence. Order. Forever.
+
+---
+
+<div align="center">
+
+**[Download Now](#quick-start)** — **[Read Docs](#documentation)** — **[Try Online](./I.QUEUE/web_ui/)**
+
+</div>
 def understand_intent(text: str) -> dict:
     """Extract user intent from input."""
     return {"intent": "...", "confidence": 0.95}
