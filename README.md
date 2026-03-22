@@ -19,25 +19,7 @@
 
 **AI agents made simple. Stack capabilities like Tetris blocks.**
 
-```
-AI Agent Assembly System
-
-    Memory      Skill      Alignment
-     Rod        Block      Formula
-      │          │           │
-      ▌          ▀▀          ▄▄
-      ▌      ╔═══╗      ╔═══════╗
-      ▌      ║ 💡 ║      ║  ⚖️   ║
-      ▌      ║━━━║      ║═══════║
-      ▌      ║ AI║      ║Values ║
-      ▌      ╚═══╝      ╚═══════╝
-  ╔═════╗                        
-  ║  📀  ║   Tetris Stacking System
-  ║━━━━━║   ✓ Smart Assembly
-  ║  01  ║   ✓ Ordered Pipeline  
-  ║  01  ║   ✓ Quantified Results
-  ╚═════╝   ✓ Control at Every Step
-```
+![I.QUEUE Tetris Game Demo](./docs/tetris-demo.png)
 
 ### Three Core Building Blocks (Stacked Together)
 
@@ -47,29 +29,15 @@ AI Agent Assembly System
 | **Skill Block** | `■` | "My new skill learned" | Capabilities defined as Python functions |
 | **Alignment** | `▲` | "I love what you love" | Quantified values with weighted formulas |
 
-Watch them stack and form your agent:
+Watch them combine to form your agent pipeline in three stages:
 
-```
-    Stage 1: Input Processing
-    ┌────────────┐
-    │ ■ ■ ■ ║    │  Skills + Memory
-    │ ───── ║    │
-    └────────────┘
-    
-    Stage 2: Reasoning
-    ┌────────────┐
-    │ ■ ║ ▲ ■    │  Mix with Alignment
-    │ ─ ║ ─ ─    │
-    └────────────┘
-    
-    Stage 3: Output
-    ┌────────────┐
-    │ ║ ■ ▲ ║    │  Final composition
-    │ ║ ─ ─ ║    │
-    └────────────┘
-    
-    Result: Complete, Aligned Agent ✓
-```
+| Stage | Key Concepts | Result |
+|-------|-------------|--------|
+| **Input Processing** | Skills + Memory | Context Preparation |
+| **Reasoning** | Mix with Alignment | Decision Making |
+| **Output** | Final Composition | Agent Response |
+
+**All working together in perfect order.** ✓
 
 **[→ View Full Interactive Showcase](https://zhouyunhong2025-cloud.github.io/XIAOJIE/showcase.html)**
 
