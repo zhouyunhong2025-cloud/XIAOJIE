@@ -274,7 +274,7 @@ python quick_start.py "Your requirement here"
 
 Example:
 ```bash
-python quick_start.py "帮我总结今天的工作"
+python quick_start.py "Summarize my work today"
 # Generates: agent_plan_YYYYMMDD_HHMMSS.md + config.yaml
 ```
 
@@ -307,7 +307,7 @@ print(plan.to_markdown())  # View complete plan
 1. Type your requirement
    "Summarize reports + track metrics"
          ↓
-2. Click "智能分析" (Smart Analyze)
+2. Click "Smart Analyze"
          ↓
 3. Review auto-generated design
    - Recommended Skills
@@ -317,7 +317,7 @@ print(plan.to_markdown())  # View complete plan
          ↓
 4. Customize (optional)
          ↓
-5. Click "🚀 一键启动" (One-Click Deploy)
+5. Click "🚀 One-Click Deploy"
          ↓
 ✅ Agent running!
 ```
@@ -491,7 +491,7 @@ pipeline = Pipeline([
 ])
 ```
 
-### AlignmentFormula — 量化对齐
+### AlignmentFormula — Quantified Alignment
 
 ```python
 alignment = AlignmentFormula([
@@ -503,21 +503,21 @@ alignment = AlignmentFormula([
 
 ---
 
-## 📚 详细文档
+## 📚 Detailed Documentation
 
-更多内容和高级用法请查看 **[I.QUEUE/README.md](I.QUEUE/README.md)**
+For more details and advanced usage, see **[I.QUEUE/README.md](I.QUEUE/README.md)**
 
-- [API 详细说明](I.QUEUE/README.md#-核心-api)
-- [完整示例](I.QUEUE/example_agent.py)
-- [配置选项](I.QUEUE/pyproject.toml)
+- [API Reference](I.QUEUE/README.md#core-api)
+- [Complete Examples](I.QUEUE/example_agent.py)
+- [Configuration Options](I.QUEUE/pyproject.toml)
 
 ---
 
-## 🔗 相关资源
+## 🔗 Resources
 
-- 🐍 **Python 3.9+** 支持
-- 📦 支持 **OpenAI** 和 **Anthropic** LLM 后端
-- 🧠 内置 **记忆系统** 和 **对齐验证**
+- 🐍 Supports **Python 3.9+**
+- 📦 Compatible with **OpenAI** and **Anthropic** LLM backends
+- 🧠 Built-in **Memory System** and **Alignment Verification**
 - 🔧 易于自定义和扩展
 
 ---
