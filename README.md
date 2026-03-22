@@ -151,11 +151,21 @@ print(f"Alignment score: {result.alignment_score}")
 
 ## Quick Start
 
-### Clone & Install
+### Download the Project
 
+**Option 1: Clone via Git** (recommended)
 ```bash
 git clone https://github.com/zhouyunhong2025-cloud/XIAOJIE.git
 cd XIAOJIE/I.QUEUE
+```
+
+**Option 2: Download ZIP**
+- Go to [GitHub Releases](../../releases) and download the latest version
+- Extract the ZIP file and navigate to the `I.QUEUE` folder
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
@@ -165,7 +175,13 @@ pip install -r requirements.txt
 python example_agent.py
 ```
 
-### Three Resolution Levels
+### Try the Interactive Demo
+
+[🎮 **Live Tetris Demo** - See Agent Assembly in Action](https://zhouyunhong2025-cloud.github.io/XIAOJIE/)
+
+---
+
+## Three Ways to Use I.QUEUE
 
 **Beginner** — Zero config, sensible defaults
 ```python
@@ -188,15 +204,16 @@ agent = Agent(
 ```python
 # Write your own @skill, @rule, Pipeline, AlignmentFormula
 # Combine them however you want
+# Unlimited customization power
 ```
 
 ---
 
-## Demo
+## More Info
 
-[🎮 **See It In Action**](https://zhouyunhong2025-cloud.github.io/XIAOJIE/)
-
-Watch blocks fall and stack in real-time—that's how your agent assembles.
+- **Full Documentation**: [I.QUEUE Framework Guide](./I.QUEUE/README.md)
+- **Live Interactive Demo**: [Tetris Playground](https://zhouyunhong2025-cloud.github.io/XIAOJIE/)
+- **Visual Showcase**: [Premium Product Demo](https://zhouyunhong2025-cloud.github.io/XIAOJIE/showcase.html)
 
 ---
 
