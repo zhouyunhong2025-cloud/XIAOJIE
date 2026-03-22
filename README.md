@@ -1,103 +1,232 @@
-# 🔧 AgentForge
+# I.QUEUE
 
 <div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=flat-square&logo=python)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Alpha-orange?style=flat-square)]()
+![I.QUEUE Tetris Demo](https://img.shields.io/badge/Demo-Live%20Preview-3498db?style=for-the-badge&logo=javascript)  
+[![Python](https://img.shields.io/badge/Python-3.9+-2ecc71?style=flat-square&logo=python)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-3498db?style=flat-square)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Alpha-e74c3c?style=flat-square)]()
 
-**用 Python 函数替代一大堆文字 Prompt 来定义 AI 智能体**
+**Intelligence. Order. A gift for you and your AI agent.**
 
-[快速开始](#快速开始) • [文档](#文档) • [示例](#示例) • [问题反馈](../../issues)
+[🎮 Live Demo](#demo) — [📖 Documentation](#documentation) — [🚀 Quick Start](#quick-start) — [💬 Issues](../../issues)
 
 </div>
 
 ---
 
-## 📌 核心问题
+## What is I.QUEUE?
 
-传统 AI 智能体需要维护一堆文本文件：
+**Build AI agents with Python functions—not giant text prompts.**
+
+Traditional AI agent development means maintaining mountains of configuration:
 
 ```
-system_prompt.txt      ← 500 行描述
-skills.md              ← 200 行能力说明
-rules.txt              ← 100 行规则
-alignment_guide.md     ← 300 行对齐指南
+system_prompt.txt      (500 lines)
+skills_description.md  (200 lines)
+rules.txt              (100 lines)
+alignment_guide.md     (300 lines)
+… it never ends
 ```
 
-**这很痛苦** 😫
+**I.QUEUE** transforms this chaos into clean, executable Python code.
 
 ---
 
-## ✨ 解决方案：AgentForge
+## The Concept
 
-**把一切变成可执行的 Python 代码**
+Think of building an agent like stacking Tetris blocks—each piece represents a capability (skill, rule, memory, alignment). Drop blocks in, watch them settle, and your agent takes shape.
+
+**That's it.** Simple. Organized. Powerful.
+
+### Try the live demo: [I.QUEUE Interactive Playground](https://zhouyunhong2025-cloud.github.io/XIAOJIE/)
+
+---
+
+## How It Works
+
+Instead of paragraphs of text, define everything as code:
 
 ```python
-# 技能 = 装饰器函数
-@skill(name="understand_intent")
-def understand(text: str) -> dict: ...
+# A skill = a typed Python function with metadata
+@skill(name="understand_intent", priority=10)
+def understand_intent(text: str) -> dict:
+    """Extract user intent from input."""
+    return {"intent": "...", "confidence": 0.95}
 
-# 规则 = 约束函数  
-@rule(name="no_harmful")
-def no_harmful(text: str) -> tuple: ...
+# A rule = an executable constraint
+@rule(name="no_harmful_output", severity="block")
+def check_safety(output: str) -> tuple[bool, str]:
+    is_safe = not contains_harm(output)
+    return is_safe, "Output violates safety policy"
 
-# 管道 = 执行顺序
+# Pipeline = explicit execution order
 pipeline = Pipeline([
-    Phase("understand", understand),
-    Phase("reason", reason_fn),
-    Phase("format", format_fn),
+    Phase("input_analysis", understand_intent),
+    Phase("reasoning", chain_of_thought),
+    Phase("output_formatting", format_response),
 ])
 
-# 对齐 = 加权公式
+# Alignment = quantifiable scoring formula
 alignment = AlignmentFormula([
-    AlignmentDimension("safety", weight=0.4),
-    AlignmentDimension("helpfulness", weight=0.35),
+    AlignmentDimension("safety", weight=0.40, scorer=safety_scorer),
+    AlignmentDimension("helpfulness", weight=0.35, scorer=help_scorer),
+    AlignmentDimension("conciseness", weight=0.25, scorer=brief_scorer),
 ])
 
-# 组装智能体
-agent = Agent(pipeline=pipeline, alignment=alignment)
+# Assemble the agent
+agent = Agent(
+    name="MyAgent",
+    pipeline=pipeline,
+    alignment=alignment,
+    llm_backend="openai"
+)
+
+# Run it
+result = agent.run("What is machine learning?")
+print(result.output)
+print(f"Alignment score: {result.alignment_score}")
 ```
 
 ---
 
-## 🎯 核心特性
+## Core Building Blocks
 
-| 特性 | 传统方式 | AgentForge |
-|-----|---------|-----------|
-| **技能定义** | 文字描述 | Python 函数 |
-| **规则管理** | 文本文件 | 代码约束 |
-| **执行流程** | 隐含在 Prompt | 显式 Pipeline |
-| **对齐验证** | 主观指南 | 量化公式 |
-| **调试能力** | 困难 | 每阶段可追踪 |
+| Block | Represents | Purpose |
+|-------|-----------|---------|
+| **Skill** | Function + metadata | Define capabilities as code |
+| **Rule** | Constraint logic | Executable guardrails |
+| **Pipeline** | Explicit stages | Structure execution flow |
+| **Alignment** | Weighted formula | Quantified value scoring |
+| **Memory** | Layered storage | Flash → session → persistent |
+| **Cartridge** | Pre-built preset | Quick start configurations |
 
 ---
 
-## 🚀 快速开始
+## Key Advantages
 
-### 1. 克隆仓库
+| Aspect | Traditional | I.QUEUE |
+|--------|-----------|---------|
+| Skill Definition | Text descriptions | Python functions |
+| Rule Management | Config files | Code constraints |
+| Execution Flow | Hidden in prompts | Explicit pipeline |
+| Alignment | Vague guidelines | Computed formula |
+| Debugging | Nearly impossible | Stage-by-stage tracking |
+| Version Control | Hard to diff | Full git support |
+| Testing | Manual | Automated |
+
+---
+
+## Quick Start
+
+### Clone & Install
 
 ```bash
 git clone https://github.com/zhouyunhong2025-cloud/XIAOJIE.git
 cd XIAOJIE/I.QUEUE
-```
-
-### 2. 安装依赖
-
-```bash
 pip install -r requirements.txt
 ```
 
-### 3. 运行示例
+### Run the Example
 
 ```bash
 python example_agent.py
 ```
 
-**预期输出：**
+### Three Resolution Levels
+
+**Beginner** — Zero config, sensible defaults
+```python
+from iqueue.cartridges import AssistantCartridge
+agent = AssistantCartridge(llm="openai").build()
+result = agent.run("Write a summary of quantum computing")
+```
+
+**Standard** — Customizable components
+```python
+agent = Agent(
+    skills=[understand_skill, reason_skill],
+    rules=[safety_rule, output_rule],
+    pipeline=my_pipeline,
+    llm_backend="openai"
+)
+```
+
+**Expert** — Full control
+```python
+# Write your own @skill, @rule, Pipeline, AlignmentFormula
+# Combine them however you want
+```
+
+---
+
+## Demo
+
+[🎮 **See It In Action**](https://zhouyunhong2025-cloud.github.io/XIAOJIE/)
+
+Watch blocks fall and stack in real-time—that's how your agent assembles.
+
+---
+
+## Documentation
+
+Full API reference and tutorials in [I.QUEUE/README.md](I.QUEUE/README.md)
+
+- [Core Concepts](I.QUEUE/README.md#core-concepts)
+- [API Reference](I.QUEUE/README.md#api-reference)
+- [Examples](I.QUEUE/example_agent.py)
+- [Advanced Usage](I.QUEUE/README.md#advanced-patterns)
+
+---
+
+## Project Structure
 
 ```
-╔══════════════════════════════════════╗
+XIAOJIE/
+├── I.QUEUE/                        # Main package
+│   ├── core/
+│   │   ├── agent.py               # Agent orchestrator
+│   │   ├── skill.py               # @skill decorator
+│   │   ├── rule.py                # @rule decorator
+│   │   ├── pipeline.py            # Pipeline execution
+│   │   ├── alignment.py           # Alignment scoring
+│   │   └── memory.py              # Memory system
+│   ├── llm/                        # LLM backends
+│   │   ├── openai_backend.py
+│   │   └── anthropic_backend.py
+│   ├── example_agent.py           # Usage demo
+│   ├── pyproject.toml             # Package config
+│   └── requirements.txt           # Dependencies
+├── docs/                          # GitHub Pages
+│   └── index.html                 # Live Tetris demo
+└── README.md                      # This file
+```
+
+---
+
+## What's Next
+
+- [ ] Interactive tutorials
+- [ ] More pre-built cartridges
+- [ ] PyPI package release
+- [ ] GitHub Actions CI/CD
+- [ ] Agent templates library
+- [ ] Performance optimization
+
+---
+
+## License
+
+MIT License — see [LICENSE](LICENSE)
+
+---
+
+<div align="center">
+
+**Made with care for developers and AI agents.**  
+[GitHub](https://github.com/zhouyunhong2025-cloud/XIAOJIE) — [Issues](../../issues) — [Discussions](../../discussions)
+
+</div>
   Agent: DemoAgent
   📦 Skills (3):
      • understand_intent [priority=10]
